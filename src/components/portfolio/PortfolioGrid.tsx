@@ -88,15 +88,27 @@ export function PortfolioGrid({ filtri, voci }: Props) {
       <div className="mil-filter mil-up mil-mb-90">
         <div className="mil-filter-links">
           {filtri.map((filtro) => (
-            <button
+            // Resta un <a> e non un <button> per non cambiare l'impaginazione:
+            // il tema non dichiara display, quindi un <a> e' inline e il suo
+            // padding verticale non allarga la riga, mentre un <button> e'
+            // inline-block e la allarga. Sotto i 992px i sei filtri vanno a
+            // capo e la differenza diventava di 60px sull'altezza della
+            // pagina. Il ruolo e il comportamento da tastiera sono dichiarati.
+            <a
               key={filtro.etichetta}
-              type="button"
+              role="button"
+              tabIndex={0}
               className={filtro.tag === filtroAttivo ? "mil-current" : ""}
               aria-pressed={filtro.tag === filtroAttivo}
               onClick={() => setFiltroAttivo(filtro.tag)}
+              onKeyDown={(evento) => {
+                if (evento.key !== "Enter" && evento.key !== " ") return;
+                evento.preventDefault();
+                setFiltroAttivo(filtro.tag);
+              }}
             >
               {filtro.etichetta}
-            </button>
+            </a>
           ))}
         </div>
       </div>
