@@ -182,6 +182,29 @@ il cursore" di `main.js`, che agiva solo su quel markup. E' anche il motivo per
 cui la 404 su `img/photo/project2.jpg` non si era mai notata: l'immagine non
 veniva disegnata.
 
+### La griglia Bootstrap
+
+Il layout Razor caricava `wwwroot/css/plugins/bootstrap-grid.css` come foglio
+separato, non compreso in `style.css`. Senza, `.container` non ha ne' padding
+ne' larghezza massima, `.row` e `.col-*` non impaginano e le utility `d-*` non
+nascondono nulla: il sito si srotola tutto a filo dei bordi della finestra.
+
+Quel file **non e'** il Bootstrap Grid 5.2.2 ufficiale: era stato modificato a
+mano in otto dichiarazioni.
+
+| Dichiarazione                     | Bootstrap 5.2.2 | Copia del tema        |
+| --------------------------------- | --------------- | --------------------- |
+| `--bs-gutter-x` (container e row) | `1.5rem`        | `30px`                |
+| padding dei container             | `calc(var * .5)`| `var(--bs-gutter-x)`  |
+| `max-width` a sm e md             | 540px / 720px   | `100%`                |
+| `max-width` a lg e xl             | 960px / 1140px  | `1200px`              |
+| `max-width` a xxl                 | 1320px          | `1300px`              |
+
+Sono scelte di impaginazione del sito: prendere il file dal pacchetto npm
+cambierebbe le proporzioni di ogni pagina. Per questo la copia del tema e'
+vendorizzata in `src/styles/vendor/bootstrap-grid.css`, con l'elenco delle
+modifiche in testa al file.
+
 ### Verifica dei contenuti
 
 `npm run check:content` estrae ricorsivamente ogni stringa da `src/data/` e

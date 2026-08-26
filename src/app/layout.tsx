@@ -6,6 +6,9 @@ import { Header } from "@/components/layout/Header";
 import { ScrollProgress } from "@/components/layout/ScrollProgress";
 import { fontVariables } from "@/lib/fonts";
 import { site } from "@/lib/site";
+// La griglia va caricata prima del tema, come nel layout Razor: alcune regole
+// del tema contano di poter sovrascrivere quelle dei container.
+import "@/styles/vendor/bootstrap-grid.css";
 import "@/styles/style.scss";
 
 export const metadata: Metadata = {
