@@ -1,9 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&family=Sora:wght@100;200;300;400;500;600;700;800&display=swap');
-
-$font-1: 'Sora',
-sans-serif;
-$font-2: 'Caveat',
-cursive;
+// I font arrivano da next/font (vedi src/app/layout.tsx), che li ospita sul
+// dominio del sito ed espone il nome della famiglia in una CSS variable.
+// Il tema li caricava con un @import verso fonts.googleapis.com: una richiesta
+// bloccante verso un terzo dominio prima di poter disegnare il testo.
+$font-1: var(--font-sora), sans-serif;
+$font-2: var(--font-caveat), cursive;
 
 $dark: rgba(0, 0, 0, 1);
 $light: rgba(255, 255, 255, 1);
