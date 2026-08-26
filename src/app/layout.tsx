@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import Script from "next/script";
+import { AnimationProvider } from "@/components/animation/AnimationProvider";
 import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
 import { fontVariables } from "@/lib/fonts";
@@ -64,6 +65,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <div id="content">{children}</div>
           <Footer />
         </div>
+
+        <AnimationProvider />
 
         {/* Banner di gestione del consenso. Va caricato presto per essere
             mostrato prima che l'utente interagisca con la pagina. */}
