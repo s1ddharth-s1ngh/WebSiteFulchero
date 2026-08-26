@@ -65,9 +65,21 @@ export function BannerSlider() {
                   <span className="mil-suptitle mil-light mil-upper mil-mb-60">
                     {slide.suptitolo}
                   </span>
-                  <h1 className="mil-upper mil-light mil-mb-60">
-                    <Testo valore={slide.titolo} />
-                  </h1>
+                  {/* Solo la prima slide e' il titolo della pagina. Le altre
+                      quattro usano la utility .mil-h1, che nel tema ha esattamente
+                      le stesse regole dell'elemento h1: stessa famiglia, stesso
+                      corpo, stesso peso, stessa interlinea. A schermo non cambia
+                      niente, ma la pagina smette di dichiarare cinque titoli
+                      principali diversi. */}
+                  {indice === 0 ? (
+                    <h1 className="mil-upper mil-light mil-mb-60">
+                      <Testo valore={slide.titolo} />
+                    </h1>
+                  ) : (
+                    <p className="mil-h1 mil-upper mil-light mil-mb-60">
+                      <Testo valore={slide.titolo} />
+                    </p>
+                  )}
                   <ArrowLink href={routes.servizi} chiaro reveal={false}>
                     {banner.etichettaLink}
                   </ArrowLink>
