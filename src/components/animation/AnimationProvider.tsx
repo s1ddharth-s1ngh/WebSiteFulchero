@@ -4,18 +4,6 @@ import { usePathname } from "next/navigation";
 import { useEffect } from "react";
 import { gsap, ScrollTrigger, valoreAnimazione } from "@/lib/gsap";
 
-/**
- * Ospita le animazioni in scroll che nel progetto originale stavano in
- * wwwroot/js/main.js, dentro un unico $(function(){...}) eseguito una volta
- * sola al caricamento della pagina.
- *
- * Con l'App Router il layout resta montato durante la navigazione: le
- * animazioni vanno ricostruite a ogni cambio di route, altrimenti dalla
- * seconda pagina in poi i contenuti resterebbero fermi allo stato iniziale.
- *
- * Rispetto all'originale le animazioni vengono saltate quando il sistema
- * dichiara prefers-reduced-motion. Il tema non prevedeva nulla del genere.
- */
 type Valore = number | string;
 
 /**
@@ -47,6 +35,18 @@ function animaConEscursione(
   }
 }
 
+/**
+ * Ospita le animazioni in scroll che nel progetto originale stavano in
+ * wwwroot/js/main.js, dentro un unico $(function(){...}) eseguito una volta
+ * sola al caricamento della pagina.
+ *
+ * Con l'App Router il layout resta montato durante la navigazione: le
+ * animazioni vanno ricostruite a ogni cambio di route, altrimenti dalla
+ * seconda pagina in poi i contenuti resterebbero fermi allo stato iniziale.
+ *
+ * Rispetto all'originale le animazioni vengono saltate quando il sistema
+ * dichiara prefers-reduced-motion. Il tema non prevedeva nulla del genere.
+ */
 export function AnimationProvider() {
   const percorso = usePathname();
 
