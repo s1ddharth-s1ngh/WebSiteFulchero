@@ -23,7 +23,20 @@ export function AnimationProvider() {
     const mm = gsap.matchMedia();
 
     mm.add("(prefers-reduced-motion: no-preference)", () => {
-      // Le singole animazioni vengono aggiunte qui dai commit successivi.
+      // Comparsa dal basso all'ingresso nel viewport: e' l'animazione piu
+      // diffusa del tema, oltre 600 occorrenze nel markup originale.
+      for (const elemento of document.querySelectorAll(".mil-up")) {
+        gsap.fromTo(
+          elemento,
+          { opacity: 0, y: 50, scale: 0.98, ease: "sine" },
+          {
+            opacity: 1,
+            y: 0,
+            scale: 1,
+            scrollTrigger: { trigger: elemento, toggleActions: "play none none reverse" },
+          },
+        );
+      }
     });
 
     // Immagini e font arrivano dopo il primo disegno e spostano tutto quello
