@@ -1,7 +1,9 @@
+import { JsonLd } from "@/components/seo/JsonLd";
 import { BgImage } from "@/components/ui/BgImage";
 import { Breadcrumbs, type Briciola } from "@/components/ui/Breadcrumbs";
 import { Testo } from "@/components/ui/Testo";
 import type { Escursione, Immagine, TitoloRicco } from "@/data/services.types";
+import { briciole as briciolePerMotori } from "@/lib/structured-data";
 
 type Props = {
   immagine: Immagine;
@@ -49,7 +51,12 @@ export function PageBanner({
             <h1 className="mil-light mil-upper mil-up mil-mb-30">
               <Testo valore={titolo} />
             </h1>
-            {briciole && <Breadcrumbs voci={briciole} centrato={centrato} />}
+            {briciole && (
+              <>
+                <Breadcrumbs voci={briciole} centrato={centrato} />
+                <JsonLd dati={briciolePerMotori(briciole)} />
+              </>
+            )}
           </div>
         </div>
       </div>
