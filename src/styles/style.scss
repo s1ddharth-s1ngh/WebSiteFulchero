@@ -54,7 +54,9 @@ Developer:	Nazar Miller (millerDigitalDesign), email: miller.themes@gmail.com
 
 --------------------------------------------*/
 
-@import 'variables';
-@import 'common';
-@import 'components';
-@import 'overrides';
+// @use al posto di @import: le regole @import di Sass sono deprecate e
+// verranno rimosse in Dart Sass 3. Ogni partial dichiara da se' la dipendenza
+// da "variables", perche' @use non propaga le variabili tra moduli.
+@use "common";
+@use "components";
+@use "overrides";
