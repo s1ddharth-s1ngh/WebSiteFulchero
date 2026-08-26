@@ -33,11 +33,13 @@ async function stato(url: string, metodo: "GET" | "HEAD" = "GET") {
   }
 }
 
-/** Riferimenti locali dentro l'HTML: src, href, srcset e url() nel CSS inline. */
+/** Riferimenti locali dentro l'HTML: src, href, content e srcset. */
 function risorseCitate(html: string): string[] {
   const trovate = new Set<string>();
 
-  for (const [, valore] of html.matchAll(/(?:src|href)="(\/[^"]*)"/g)) {
+  // `content` copre og:image e twitter:image, che non stanno in src ne in href
+  // e sfuggirebbero al controllo.
+  for (const [, valore] of html.matchAll(/(?:src|href|content)="(\/[^"]*)"/g)) {
     if (valore.startsWith("//")) continue;
     trovate.add(valore.replace(/&amp;/g, "&"));
   }

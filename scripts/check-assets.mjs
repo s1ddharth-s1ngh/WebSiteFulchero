@@ -47,6 +47,10 @@ for (const dir of SCAN_DIRS) {
   for (const file of walk(join(ROOT, dir))) {
     if (!SCAN_EXT.has(extname(file))) continue;
     for (const [, ref] of readFileSync(file, "utf8").matchAll(REFERENCE_RE)) {
+      // Percorso composto a runtime, per esempio `/img/og/${nome}.jpg`: non
+      // si puo' risolvere leggendo il sorgente. Lo verifica check:routes,
+      // che interroga le pagine gia' generate.
+      if (ref.includes("${")) continue;
       const key = decodeURIComponent(ref);
       if (!referenced.has(key)) referenced.set(key, new Set());
       referenced.get(key).add(toPosix(relative(ROOT, file)));
