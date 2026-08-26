@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { altDi } from "@/data/alt";
 import type { ReactNode } from "react";
 import type { Escursione, Immagine } from "@/data/services.types";
 
@@ -52,7 +53,7 @@ export function Illustration({
       <div className="mil-image-frame">
         <Image
           src={immagine.src}
-          alt={immagine.alt}
+          alt={altDi(immagine.src, immagine.alt)}
           fill
           sizes={pienaLarghezza ? "100vw" : "(max-width: 992px) 100vw, 50vw"}
           {...(classiImmagine ? { className: classiImmagine } : {})}

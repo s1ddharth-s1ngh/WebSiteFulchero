@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useEffect, useId, useRef, useState, type KeyboardEvent } from "react";
+import { altDi } from "@/data/alt";
 import type { ProgettoInEvidenza } from "@/data/home";
 import { gsap } from "@/lib/gsap";
 
@@ -83,7 +84,7 @@ export function Accordion({ voci }: Props) {
             >
               <Image
                 src={voce.immagine.src}
-                alt={voce.immagine.alt}
+                alt={altDi(voce.immagine.src, voce.immagine.alt)}
                 width={voce.immagine.dimensioni?.larghezza ?? 0}
                 height={voce.immagine.dimensioni?.altezza ?? 0}
                 sizes="320px"

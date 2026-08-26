@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { altDi } from "@/data/alt";
 import { routes } from "@/lib/routes";
 import { site } from "@/lib/site";
 
@@ -23,7 +24,7 @@ export function Logo({ larghezza, id }: Props) {
     <Link href={routes.home} className="mil-logo">
       <Image
         src={site.logoChiaro}
-        alt={`${site.nome} - ${site.claim}`}
+        alt={altDi(site.logoChiaro)}
         width={larghezza}
         height={Math.round(larghezza * RAPPORTO)}
         priority

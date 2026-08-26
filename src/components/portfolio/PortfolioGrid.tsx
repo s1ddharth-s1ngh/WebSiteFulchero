@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import type Isotope from "isotope-layout";
+import { altDi } from "@/data/alt";
 import type { FiltroPortfolio, VocePortfolio } from "@/data/portfolio.types";
 import { ScrollTrigger } from "@/lib/gsap";
 
@@ -140,7 +141,7 @@ export function PortfolioGrid({ filtri, voci }: Props) {
                   >
                     <Image
                       src={voce.immagine.src}
-                      alt={voce.immagine.alt}
+                      alt={altDi(voce.immagine.src, voce.immagine.alt)}
                       fill
                       sizes="(max-width: 992px) 100vw, 50vw"
                     />

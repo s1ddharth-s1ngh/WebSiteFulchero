@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { altDi } from "@/data/alt";
 
 /**
  * Coppia di valori letta dal motore di animazione (data-value-1 e data-value-2).
@@ -41,7 +42,9 @@ export function BgImage({ src, alt, scala, parallasse, posizione, priorita = fal
   return (
     <Image
       src={src}
-      alt={alt}
+      // Il registro dei testi alternativi ha la precedenza su quello che
+      // arriva dai dati: vedi src/data/alt.ts.
+      alt={altDi(src, alt)}
       fill
       unoptimized={vettoriale}
       // Immagini a tutta larghezza: il browser sceglie in base al viewport.
