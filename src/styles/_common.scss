@@ -246,7 +246,9 @@ a {
 }
 
 .mil-light-soft {
-    color: $lt-50;
+    // Il tema usa $lt-50: in produzione era stato alzato a .84 perche' sui
+    // fondi fotografici scuri il testo al 50% risultava illeggibile.
+    color: $light-soft-text;
 
     & a {
         color: $lt-50 !important;
