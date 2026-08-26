@@ -229,6 +229,13 @@ function estraiPagina(slug, nomeView) {
       })),
     },
 
+    // Otto pagine su nove hanno una riga orizzontale tra le caratteristiche e
+    // l'illustrazione; Progettazione Architettonica no. La presenza viene
+    // registrata invece di essere uniformata, per non aggiungere una riga
+    // visibile a una pagina che non l'ha mai avuta.
+    divisorePrimaIllustrazione:
+      /<!-- info end -->[\s\S]*?mil-divider-lg[\s\S]*?<!-- portfolio -->/.test(sorgente),
+
     // Testo breve mostrato nella griglia della pagina Servizi e nelle tre
     // card in evidenza sulla Home.
     cardTesto: CARD.get(nomeView)?.testo ?? "",

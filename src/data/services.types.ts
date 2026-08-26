@@ -66,6 +66,12 @@ export type ContenutoServizio = {
    */
   cardTesto: string;
 
+  /**
+   * Riga orizzontale tra le caratteristiche e l'illustrazione. Presente in
+   * otto pagine su nove: Progettazione Architettonica non ce l'ha.
+   */
+  divisorePrimaIllustrazione: boolean;
+
   /** Fotografia a piena larghezza tra le caratteristiche e i principi. */
   illustrazione: Immagine;
 

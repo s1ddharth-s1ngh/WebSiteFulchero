@@ -116,6 +116,7 @@ export const SERVIZI_CONTENUTO: Record<ServizioSlug, ContenutoServizio> = {
         },
       ],
     },
+    divisorePrimaIllustrazione: false,
     cardTesto:
       "Un interlocutore unico che coordina e gestisce l'intero processo, facendo da ponte tra le diverse figure professionali coinvolte",
     conclusioni: {
@@ -239,6 +240,7 @@ export const SERVIZI_CONTENUTO: Record<ServizioSlug, ContenutoServizio> = {
         },
       ],
     },
+    divisorePrimaIllustrazione: true,
     cardTesto:
       "Progettazione strutturale di edifici e opere, nuove o esistenti, da realizzarsi in calcestruzzo armato, acciaio, muratura e legno",
     conclusioni: {
@@ -361,6 +363,7 @@ export const SERVIZI_CONTENUTO: Record<ServizioSlug, ContenutoServizio> = {
         },
       ],
     },
+    divisorePrimaIllustrazione: true,
     cardTesto:
       "Elaborazione di piani e soluzioni per garantire la sicurezza e la salute dei lavoratori, prevenendo rischi e infortuni",
     conclusioni: {
@@ -483,6 +486,7 @@ export const SERVIZI_CONTENUTO: Record<ServizioSlug, ContenutoServizio> = {
         },
       ],
     },
+    divisorePrimaIllustrazione: true,
     cardTesto:
       "Progettazione di soluzioni tecniche e preventive per garantire la sicurezza contro il rischio incendi",
     conclusioni: {
@@ -605,6 +609,7 @@ export const SERVIZI_CONTENUTO: Record<ServizioSlug, ContenutoServizio> = {
         },
       ],
     },
+    divisorePrimaIllustrazione: true,
     cardTesto: "Soggetto unico per la progettazione e ottimizzazione dei vostri investimenti",
     conclusioni: {
       titolo: "Gestione Ottimale del Processo",
@@ -726,6 +731,7 @@ export const SERVIZI_CONTENUTO: Record<ServizioSlug, ContenutoServizio> = {
         },
       ],
     },
+    divisorePrimaIllustrazione: true,
     cardTesto:
       "Soluzioni efficienti per la progettazione e realizzazione di impianti elettrici sicuri e conformi alle normative",
     conclusioni: {
@@ -849,6 +855,7 @@ export const SERVIZI_CONTENUTO: Record<ServizioSlug, ContenutoServizio> = {
         },
       ],
     },
+    divisorePrimaIllustrazione: true,
     cardTesto:
       "Redazione dell'elaborato tecnico per la copertura, al fine di garantire l'esecuzione dei lavori sui tetti in piena sicurezza",
     conclusioni: {
@@ -971,6 +978,7 @@ export const SERVIZI_CONTENUTO: Record<ServizioSlug, ContenutoServizio> = {
         },
       ],
     },
+    divisorePrimaIllustrazione: true,
     cardTesto:
       "Integrare la progettazione energetica, architettonica e strutturale per ottimizzare le prestazioni energetiche dell’edificio",
     conclusioni: {
@@ -1093,6 +1101,7 @@ export const SERVIZI_CONTENUTO: Record<ServizioSlug, ContenutoServizio> = {
         },
       ],
     },
+    divisorePrimaIllustrazione: true,
     cardTesto:
       "Unico referente per la progettazione e la direzione dei lavori, che coordina tutte le figure coinvolte per garantire l'ottimale realizzazione dell’opera",
     conclusioni: {

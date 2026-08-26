@@ -115,9 +115,8 @@ export default async function PaginaServizio({
         </div>
       </section>
 
-      {/* La pagina Progettazione Architettonica era l'unica senza questa riga:
-          le altre otto la hanno tutte. */}
-      <Divisore />
+      {/* Progettazione Architettonica e' l'unica delle nove senza questa riga. */}
+      {contenuto.divisorePrimaIllustrazione && <Divisore />}
 
       <IllustrationFrame>
         <Illustration immagine={illustrazione} pienaLarghezza />
@@ -167,8 +166,13 @@ export default async function PaginaServizio({
               {conclusioni.paragrafi.map((paragrafo, indice) => (
                 <p
                   key={paragrafo.slice(0, 40)}
+                  // Il margine piu ampio chiude il blocco solo quando i
+                  // paragrafi sono piu d'uno: e' cosi' nell'unica pagina che
+                  // ne ha due.
                   className={`mil-up ${
-                    indice === conclusioni.paragrafi.length - 1 ? "mil-mb-60" : "mil-mb-30"
+                    conclusioni.paragrafi.length > 1 && indice === conclusioni.paragrafi.length - 1
+                      ? "mil-mb-60"
+                      : "mil-mb-30"
                   }`}
                 >
                   {paragrafo}
