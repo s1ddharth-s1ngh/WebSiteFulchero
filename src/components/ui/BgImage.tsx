@@ -1,5 +1,4 @@
 import Image from "next/image";
-import type { CSSProperties } from "react";
 
 /**
  * Coppia di valori letta dal motore di animazione (data-value-1 e data-value-2).
@@ -19,7 +18,6 @@ type Props = {
   posizione?: string;
   /** Da attivare sull'immagine di apertura: e' l'LCP della pagina. */
   priorita?: boolean;
-  style?: CSSProperties;
 };
 
 /**
@@ -30,15 +28,7 @@ type Props = {
  * dall'ottimizzatore di Next, che genera AVIF e WebP alle risoluzioni dei
  * breakpoint dichiarati in next.config.ts.
  */
-export function BgImage({
-  src,
-  alt,
-  scala,
-  parallasse,
-  posizione,
-  priorita = false,
-  style,
-}: Props) {
+export function BgImage({ src, alt, scala, parallasse, posizione, priorita = false }: Props) {
   const escursione = scala ?? parallasse;
   const classi = ["mil-bg-img", scala && "mil-scale", parallasse && "mil-parallax"]
     .filter(Boolean)
@@ -53,9 +43,10 @@ export function BgImage({
       sizes="100vw"
       priority={priorita}
       className={classi}
-      // `fill` scrive position e inset inline; object-fit e object-position
-      // restano quelli della classe .mil-bg-img se non li si sovrascrive qui.
-      style={{ ...(posizione ? { objectPosition: posizione } : {}), ...style }}
+      // `fill` scrive position e inset inline, e Next rifiuta qualunque
+      // altra proprieta di geometria nello style. Le eccezioni di ingombro
+      // stanno quindi nel CSS (vedi `footer .mil-bg-img` in _overrides.scss).
+      {...(posizione ? { style: { objectPosition: posizione } } : {})}
       {...(escursione
         ? { "data-value-1": String(escursione.da), "data-value-2": String(escursione.a) }
         : {})}

@@ -20,7 +20,7 @@ griglia decorativa
    emettere gli elementi (61 occorrenze nelle view) ma restano invisibili. */
 .mil-background-grid,
 .mil-background-grid.mil-softened {
-    opacity: 0 !important;
+  opacity: 0 !important;
 }
 
 /* -------------------------------------------
@@ -30,20 +30,20 @@ card servizio
 /* Altezza fissa delle card servizio: senza, in una riga da tre le card con
    testo piu corto risultavano piu basse e la griglia si sfalsava. */
 .fixed-height {
-    height: 350px !important;
+  height: 350px !important;
 }
 
 /* Il tema disegna il bordo tratteggiato della card gia' in stato di riposo,
    in blu. Qui viene reso neutro: il blu resta solo sull'hover. */
 .mil-service-card {
-    border-image: repeating-linear-gradient(
-            -45deg,
-            transparent,
-            transparent 1px,
-            $dt-25 1px,
-            $dt-25 3px
-        )
-        5 !important;
+  border-image: repeating-linear-gradient(
+      -45deg,
+      transparent,
+      transparent 1px,
+      $dt-25 1px,
+      $dt-25 3px
+    )
+    5 !important;
 }
 
 /* -------------------------------------------
@@ -54,10 +54,10 @@ pulsante del menu
    tastiera ne annunciato con il suo stato aperto/chiuso. Qui e' un <button>:
    servono le neutralizzazioni degli stili di default del pulsante. */
 button.mil-menu-btn {
-    padding: 0;
-    border: none;
-    background: none;
-    appearance: none;
+  padding: 0;
+  border: none;
+  background: none;
+  appearance: none;
 }
 
 /* -------------------------------------------
@@ -67,7 +67,7 @@ testo su fondo scuro
 /* Il tema non ha una utility per il bianco pieno: $lt-* si ferma al 95%.
    Serve nel footer, dove il testo deve restare a contrasto pieno. */
 .text-white {
-    color: $light !important;
+  color: $light !important;
 }
 
 /* -------------------------------------------
@@ -77,69 +77,69 @@ footer
 /* Sotto i 768px le tre colonne del footer si impilano: la prima, che contiene
    logo e recapiti, va centrata come le altre due. */
 @media (max-width: 767px) {
-    .custom-center {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
+  .custom-center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
 
-        .mil-logo img {
-            margin: 0 auto;
-        }
+    .mil-logo img {
+      margin: 0 auto;
     }
+  }
 }
 
 /* Spaziature verticali del footer, che si comprimono al ridursi della
    larghezza per non far crescere troppo la colonna impilata. */
 .text-fpadding {
-    padding-top: 32px !important;
+  padding-top: 32px !important;
 }
 
 .t-pad {
-    padding-top: 16px !important;
+  padding-top: 16px !important;
 }
 
 @media (max-width: 992px) {
-    .text-fpadding {
-        padding-top: 25px !important;
-    }
+  .text-fpadding {
+    padding-top: 25px !important;
+  }
 
-    .t-pad {
-        padding-top: 6px !important;
-    }
+  .t-pad {
+    padding-top: 6px !important;
+  }
 }
 
 @media (max-width: 500px) {
-    .text-fpadding {
-        padding-top: 12px !important;
-    }
+  .text-fpadding {
+    padding-top: 12px !important;
+  }
 
-    .t-pad {
-        padding-top: 0 !important;
-    }
+  .t-pad {
+    padding-top: 0 !important;
+  }
 }
 
 /* Il footer Razor ripeteva style="padding-top: 5px!important" su otto
    paragrafi. Stessa identica dichiarazione, una sola classe. */
 .mil-footer-riga {
-    padding-top: 5px !important;
+  padding-top: 5px !important;
 }
 
 /* Righe delle partite IVA: stessa spaziatura, corpo piu piccolo. */
 .mil-footer-fiscale {
-    padding-top: 5px !important;
-    font-size: 14px;
+  padding-top: 5px !important;
+  font-size: 14px;
 }
 
 /* Stacca il blocco delle partite IVA da quello degli orari. */
 .mil-footer-blocco-fiscale {
-    padding-top: 16px !important;
+  padding-top: 16px !important;
 }
 
 /* Il credito in fondo resta piu smorzato del resto del footer, che dopo la
    modifica di .mil-light-soft e' passato al bianco 84%. */
 .mil-footer-credits {
-    color: $lt-50 !important;
+  color: $lt-50 !important;
 }
 
 /* -------------------------------------------
@@ -150,29 +150,29 @@ griglia portfolio
    delle colonne. L'altezza cresce con la larghezza del viewport perche' il
    passo della griglia cambia con il numero di colonne. */
 .custom-spacing {
-    height: 20px;
+  height: 20px;
 }
 
 @media (min-width: 768px) and (max-width: 1024px) {
-    .custom-spacing {
-        height: 40px;
-    }
+  .custom-spacing {
+    height: 40px;
+  }
 }
 
 @media (min-width: 1025px) {
-    .custom-spacing {
-        height: 47px;
-    }
+  .custom-spacing {
+    height: 47px;
+  }
 }
 
 /* Su mobile il pannello di descrizione copre l'intera anteprima: testo piu
    piccolo e padding inferiore ridotto per farci stare la descrizione. */
 @media (max-width: 767px) {
-    .desc-portfolio {
-        font-size: 9px !important;
-    }
+  .desc-portfolio {
+    font-size: 9px !important;
+  }
 
-    .mil-project-descr {
-        padding: 90px 60px 5px 100px !important;
-    }
+  .mil-project-descr {
+    padding: 90px 60px 5px 100px !important;
+  }
 }

@@ -14,9 +14,6 @@ export function Footer() {
         alt={`${site.nome} - ${site.claim}`}
         posizione="top"
         parallasse={{ da: "-25%", a: "23%" }}
-        // `fill` scrive height e top inline, che superano in specificita la
-        // regola `footer .mil-bg-img` del tema: va ripetuta qui.
-        style={{ height: "150%", top: "-25%" }}
       />
       <div className="mil-overlay" />
 

@@ -35,7 +35,8 @@ const INTENZIONALI = [
     motivo: "ripete height: 20px, cioe' il valore di default: regola senza effetto",
   },
   {
-    match: (selector) => selector.startsWith("@import") && selector.includes("fonts.googleapis.com"),
+    match: (selector) =>
+      selector.startsWith("@import") && selector.includes("fonts.googleapis.com"),
     lato: "legacy",
     motivo: "i font passano da next/font, self-hosted, invece che da un @import bloccante",
   },
@@ -45,10 +46,16 @@ const INTENZIONALI = [
     motivo: "l'hamburger e' un <button> invece di un <div>: reset degli stili nativi",
   },
   {
-    match: (selector) =>
-      /^\.mil-footer-(riga|fiscale|blocco-fiscale|credits)$/.test(selector),
+    match: (selector) => /^\.mil-footer-(riga|fiscale|blocco-fiscale|credits)$/.test(selector),
     lato: "porting",
     motivo: "spaziature del footer ripetute inline su 11 elementi, raccolte in classi",
+  },
+  {
+    match: (selector) => selector === "footer .mil-bg-img",
+    lato: "porting",
+    motivo:
+      "stessi valori del tema ripetuti con !important: next/image con fill scrive " +
+      "height e inset inline e non accetta quelle proprieta nello style",
   },
 ];
 
@@ -71,7 +78,10 @@ const COLOR_KEYWORDS = {
 };
 
 function normalizeDecl(raw) {
-  let decl = raw.replace(/\/\*[\s\S]*?\*\//g, " ").replace(/\s+/g, " ").trim();
+  let decl = raw
+    .replace(/\/\*[\s\S]*?\*\//g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
   if (!decl) return "";
   decl = decl.replace(/\s*!\s*important$/i, " !important");
   const colon = decl.indexOf(":");
@@ -199,7 +209,7 @@ for (const [k, decls] of legacyIndex) {
   }
   const ours = mineIndex.get(k).join(" && ");
   const theirs = decls.join(" && ");
-  if (ours !== theirs) {
+  if (ours !== theirs && !spiegato(selector, context, "porting")) {
     problems.push(
       `dichiarazioni diverse: ${context ? context + " " : ""}${selector}\n  porting: ${ours}\n  legacy:  ${theirs}`,
     );
