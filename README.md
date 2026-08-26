@@ -8,8 +8,9 @@ staticamente in fase di build.
 
 Riscrittura del precedente sito in ASP.NET Core MVC: la mappa della
 conversione, i difetti trovati nel progetto di partenza e le decisioni prese
-sono in [MIGRATION.md](MIGRATION.md). Le convenzioni di lavoro sono in
-[CONTRIBUTING.md](CONTRIBUTING.md).
+sono in [MIGRATION.md](MIGRATION.md). Il lavoro sul posizionamento nei motori
+di ricerca e cosa resta da fare fuori dal sito sono in [SEO.md](SEO.md). Le
+convenzioni di lavoro sono in [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## Avvio
 
@@ -34,6 +35,7 @@ Google e li salva nel progetto: serve una connessione.
 | `npm run check:assets`  | ogni `/img/...` citato nel codice esiste, con lo stesso case |
 | `npm run check:css`     | il CSS compilato coincide con quello del sito precedente     |
 | `npm run check:content` | ogni testo in `src/data/` compare nelle view originali       |
+| `npm run check:seo`     | titoli, descrizioni, `h1`, `alt` e dati strutturati          |
 | `npm run check:routes`  | route e risorse su un'istanza avviata (serve `npm start`)    |
 | `npm run format`        | Prettier                                                     |
 
@@ -79,6 +81,8 @@ verifica che resti identico.
 | Azienda                                 | `src/data/company.ts`   |
 | Servizi, Portfolio, Contatti            | `src/data/pages.ts`     |
 | Sezioni condivise                       | `src/data/sections.ts`  |
+| Titoli e descrizioni per Google         | `src/data/seo.ts`       |
+| Testi alternativi delle immagini        | `src/data/alt.ts`       |
 | Elenco e ordine dei servizi             | `src/lib/routes.ts`     |
 
 `services.ts` e `portfolio.ts` sono generati dagli script di estrazione: se
@@ -94,8 +98,17 @@ Vanno in `public/img/`, con nomi in minuscolo. Passano da `next/image`, che le
 serve in AVIF o WebP alla risoluzione richiesta dal viewport: non serve
 prepararne piu versioni.
 
+Dopo averne aggiunte, `node scripts/compress-images.mjs` le ricomprime e limita
+il lato lungo a 2560 pixel, che e' il massimo che il sito serva. Ogni file
+viene confrontato con il proprio originale e lasciato invariato se il guadagno
+non giustifica la riscrittura; `--prova` mostra cosa farebbe senza scrivere.
+
+Il testo alternativo di ogni immagine sta in `src/data/alt.ts`, uno per file.
+
 Se il logo cambia, `node scripts/generate-icons.mjs` rigenera favicon, apple
 touch icon, immagine OpenGraph e le icone del manifest.
+`npx tsx scripts/generate-og-images.mts` rigenera le anteprime social delle
+singole pagine.
 
 ## Deploy
 

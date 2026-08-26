@@ -89,8 +89,10 @@ function trova(cartella: string): string[] {
 }
 
 if (!existsSync(CARTELLA)) {
-  console.error(`check-seo: ${CARTELLA} non trovata. Serve un npm run build.`);
-  process.exit(1);
+  // Senza build non c'e' niente da controllare, e non e' un errore: rende il
+  // comando innocuo dentro npm run check su un albero appena clonato.
+  console.log(`check-seo: saltato, ${CARTELLA} non trovata. Esegui prima npm run build.`);
+  process.exit(0);
 }
 
 const pagine = trova(CARTELLA).sort().map(leggi);
