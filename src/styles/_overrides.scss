@@ -156,6 +156,54 @@ footer
 }
 
 /* -------------------------------------------
+fisarmonica dei progetti in evidenza
+------------------------------------------- */
+
+/* Nel progetto originale queste regole erano in un <style> dentro
+   Index.cshtml, non nel foglio di stile. */
+.mil-accordion-content {
+  text-align: left;
+
+  img {
+    height: 205px;
+    width: auto;
+    object-fit: cover;
+    display: block;
+    margin-bottom: 10px;
+  }
+
+  p {
+    margin: 0;
+  }
+}
+
+/* Il tema lascia il + e il - sovrapposti e visibili entrambi, contando su GSAP
+   per nascondere il meno dopo il caricamento: senza JavaScript, o prima che lo
+   script partisse, si vedevano i due segni uno sopra l'altro. Lo stato di
+   partenza e il passaggio da uno all'altro stanno ora nel CSS, guidati
+   dall'attributo che dichiara se la voce e' aperta. */
+.mil-accordion-menu {
+  .mil-plus,
+  .mil-minus {
+    transition: opacity $t-sm;
+  }
+
+  .mil-minus {
+    opacity: 0;
+  }
+
+  &[aria-expanded="true"] {
+    .mil-plus {
+      opacity: 0;
+    }
+
+    .mil-minus {
+      opacity: 1;
+    }
+  }
+}
+
+/* -------------------------------------------
 griglia portfolio
 ------------------------------------------- */
 

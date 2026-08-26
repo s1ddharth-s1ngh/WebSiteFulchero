@@ -17,6 +17,12 @@ export type Immagine = {
   alt: string;
   /** `object-position`, quando il ritaglio di default taglia male il soggetto. */
   posizione?: string;
+  /**
+   * Dimensioni reali del file. Servono dove l'immagine non riempie un
+   * contenitore ma si dimensiona da se': next/image le usa per riservare lo
+   * spazio giusto ed evitare che la pagina salti quando l'immagine arriva.
+   */
+  dimensioni?: { larghezza: number; altezza: number };
 };
 
 /** Valori di partenza e arrivo di un'animazione legata allo scorrimento. */

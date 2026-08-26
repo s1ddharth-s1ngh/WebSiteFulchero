@@ -53,6 +53,13 @@ const INTENZIONALI = [
     motivo: "spaziature del footer ripetute inline su 11 elementi, raccolte in classi",
   },
   {
+    match: (selector) => /^\.mil-accordion-(content|menu)/.test(selector),
+    lato: "porting",
+    motivo:
+      "regole della fisarmonica che stavano in un <style> dentro Index.cshtml, " +
+      "piu lo stato iniziale dei segni + e -, prima lasciato a GSAP",
+  },
+  {
     match: (selector) => selector === "footer .mil-bg-img",
     lato: "porting",
     motivo:

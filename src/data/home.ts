@@ -108,25 +108,41 @@ export const HOME = {
     voci: [
       {
         titolo: "Progettazione Industriale",
-        immagine: { src: "/img/arch/structural.jpg", alt: "Progettazione Industriale" },
+        immagine: {
+          src: "/img/arch/structural.jpg",
+          alt: "Progettazione Industriale",
+          dimensioni: { larghezza: 2304, altezza: 1531 },
+        },
         testo:
           "Abbiamo progettato le fondazioni strutturali dei nuovi silos e tralicci, assicurando deformazioni compatibili con i macchinari installati per garantirne il corretto funzionamento.",
       },
       {
         titolo: "Infrastrutture Pubbliche",
-        immagine: { src: "/img/arch/architecture.jpg", alt: "Infrastrutture Pubbliche" },
+        immagine: {
+          src: "/img/arch/architecture.jpg",
+          alt: "Infrastrutture Pubbliche",
+          dimensioni: { larghezza: 2592, altezza: 1944 },
+        },
         testo:
           "Con una associazione temporanea di professionisti abbiamo redatto il progetto esecutivo della tangenziale di Saluzzo.",
       },
       {
         titolo: "Restauri e Riqualificazioni",
-        immagine: { src: "/img/arch/restauri.png", alt: "Restauri e Riqualificazioni" },
+        immagine: {
+          src: "/img/arch/restauri.png",
+          alt: "Restauri e Riqualificazioni",
+          dimensioni: { larghezza: 678, altezza: 683 },
+        },
         testo:
           "In questo lavoro abbiamo progettato il risanamento conservativo del Palazzo Giriodi edificato in centro a Verzuolo nel 1668 da una famiglia di venditori di spezie provenienti da Venasca.",
       },
       {
         titolo: "Residenze Sostenibili",
-        immagine: { src: "/img/arch/portfolio-18.jpeg", alt: "Residenze Sostenibili" },
+        immagine: {
+          src: "/img/arch/portfolio-18.jpeg",
+          alt: "Residenze Sostenibili",
+          dimensioni: { larghezza: 2000, altezza: 1500 },
+        },
         testo:
           "Abbiamo progettato la ristrutturazione completa di un edificio unifamiliare, curando ogni dettaglio architettonico, strutturale e di sicurezza, per garantire funzionalità, estetica e risparmio.",
       },
