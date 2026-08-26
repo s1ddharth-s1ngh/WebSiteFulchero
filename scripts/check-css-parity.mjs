@@ -60,6 +60,20 @@ const INTENZIONALI = [
       "piu lo stato iniziale dei segni + e -, prima lasciato a GSAP",
   },
   {
+    match: (selector) => selector.startsWith("h1, .mil-h1, h2,"),
+    lato: "legacy",
+    motivo:
+      "il tema scriveva .mil-h12 al posto di .mil-h2 nel blocco comune dei titoli: " +
+      "refuso corretto, la classe non era usata da nessuna parte",
+  },
+  {
+    match: (selector) => selector.startsWith("h1, .mil-h1, h2,"),
+    lato: "porting",
+    motivo:
+      "il tema scriveva .mil-h12 al posto di .mil-h2 nel blocco comune dei titoli: " +
+      "refuso corretto, la classe non era usata da nessuna parte",
+  },
+  {
     match: (selector) => selector === "footer .mil-bg-img",
     lato: "porting",
     motivo:
