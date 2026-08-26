@@ -14,6 +14,7 @@ import { join } from "node:path";
 import { AZIENDA } from "@/data/company";
 import { HOME } from "@/data/home";
 import { VOCI_PORTFOLIO, FILTRI_PORTFOLIO } from "@/data/portfolio";
+import { CTA_CONTATTI } from "@/data/sections";
 import { SERVIZI_CONTENUTO } from "@/data/services";
 
 const VIEWS_DIR =
@@ -121,6 +122,7 @@ const fonti: Record<string, unknown> = {
   home: HOME,
   azienda: AZIENDA,
   portfolio: { filtri: FILTRI_PORTFOLIO, voci: VOCI_PORTFOLIO },
+  sezioni: { ctaContatti: CTA_CONTATTI },
   servizi: SERVIZI_CONTENUTO,
 };
 
