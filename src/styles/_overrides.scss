@@ -119,6 +119,29 @@ footer
     }
 }
 
+/* Il footer Razor ripeteva style="padding-top: 5px!important" su otto
+   paragrafi. Stessa identica dichiarazione, una sola classe. */
+.mil-footer-riga {
+    padding-top: 5px !important;
+}
+
+/* Righe delle partite IVA: stessa spaziatura, corpo piu piccolo. */
+.mil-footer-fiscale {
+    padding-top: 5px !important;
+    font-size: 14px;
+}
+
+/* Stacca il blocco delle partite IVA da quello degli orari. */
+.mil-footer-blocco-fiscale {
+    padding-top: 16px !important;
+}
+
+/* Il credito in fondo resta piu smorzato del resto del footer, che dopo la
+   modifica di .mil-light-soft e' passato al bianco 84%. */
+.mil-footer-credits {
+    color: $lt-50 !important;
+}
+
 /* -------------------------------------------
 griglia portfolio
 ------------------------------------------- */

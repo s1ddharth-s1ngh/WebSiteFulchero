@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import Script from "next/script";
+import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
 import { fontVariables } from "@/lib/fonts";
 import { site } from "@/lib/site";
@@ -61,6 +62,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <div className="mil-wrapper">
           <Header />
           <div id="content">{children}</div>
+          <Footer />
         </div>
 
         {/* Banner di gestione del consenso. Va caricato presto per essere

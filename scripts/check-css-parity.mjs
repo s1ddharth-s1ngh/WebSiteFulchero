@@ -44,6 +44,12 @@ const INTENZIONALI = [
     lato: "porting",
     motivo: "l'hamburger e' un <button> invece di un <div>: reset degli stili nativi",
   },
+  {
+    match: (selector) =>
+      /^\.mil-footer-(riga|fiscale|blocco-fiscale|credits)$/.test(selector),
+    lato: "porting",
+    motivo: "spaziature del footer ripetute inline su 11 elementi, raccolte in classi",
+  },
 ];
 
 /**
