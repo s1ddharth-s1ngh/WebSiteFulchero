@@ -181,3 +181,21 @@ Non e' stata portata, e con lei non serve nemmeno l'effetto "immagine che segue
 il cursore" di `main.js`, che agiva solo su quel markup. E' anche il motivo per
 cui la 404 su `img/photo/project2.jpg` non si era mai notata: l'immagine non
 veniva disegnata.
+
+### Verifica dei contenuti
+
+`npm run check:content` estrae ricorsivamente ogni stringa da `src/data/` e
+verifica che compaia nelle view Razor originali. E' la prova che nel passaggio
+non e' stata cambiata una parola: `home.ts` e `company.ts` sono stati scritti a
+mano, e un refuso introdotto li' sarebbe indistinguibile dal testo autentico.
+
+Le deviazioni volute stanno nell'array `DEVIAZIONI` con la loro motivazione.
+Allo stato: 552 testi verificati, 2 deviazioni (la correzione di
+`SCOPRI DI PIù`).
+
+Il confronto normalizza in NFC. Le view non sono uniformi nella codifica delle
+lettere accentate: quasi ovunque usano la forma precomposta (U+00E8 per `è`),
+ma in un punto di `Azienda.cshtml` c'e' la forma scomposta, cioe' `e` seguita
+dall'accento combinante U+0300. Le due sequenze si disegnano identiche ma sono
+stringhe diverse, quindi rompono qualunque ricerca testuale. I file in
+`src/data/` sono tutti in NFC.
