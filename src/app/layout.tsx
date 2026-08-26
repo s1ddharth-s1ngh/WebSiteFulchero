@@ -53,7 +53,22 @@ export const metadata: Metadata = {
     description: RICERCA_HOME.descrizione,
   },
   alternates: { canonical: "/" },
-  robots: { index: true, follow: true },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      // Abilita l'anteprima grande nei risultati di ricerca. Per uno studio di
+      // progettazione la fotografia di un lavoro realizzato e' il contenuto
+      // piu' convincente che possa comparire accanto al titolo, e senza questa
+      // direttiva Google si limita alla miniatura.
+      "max-image-preview": "large",
+      // Nessun limite alla lunghezza dell'estratto e all'anteprima video.
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
+  },
 };
 
 export const viewport: Viewport = {
@@ -64,6 +79,14 @@ export const viewport: Viewport = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang={site.lingua} className={fontVariables}>
+      <head>
+        {/* I due script Iubenda vengono scoperti solo quando il browser ha
+            gia' analizzato la pagina: aprire prima la connessione verso i loro
+            domini toglie handshake dal percorso critico. */}
+        <link rel="preconnect" href="https://embeds.iubenda.com" />
+        <link rel="preconnect" href="https://cdn.iubenda.com" />
+        <link rel="dns-prefetch" href="https://cdn.iubenda.com" />
+      </head>
       <body>
         <div className="mil-wrapper">
           <ScrollProgress />
