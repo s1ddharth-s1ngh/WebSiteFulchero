@@ -113,3 +113,39 @@ Divergenze recuperate dal CSS di produzione e riportate nei sorgenti:
 | `.mil-top-panel.mil-active`           | nero 90%       | nero 77%                          |
 | `.mil-project-descr`                  | fondo pieno    | fondo 60% + `backdrop-filter`     |
 | soglia menu mobile                    | 1200px         | 1000px                            |
+
+---
+
+## Contenuti
+
+I testi delle pagine non sono stati ricopiati a mano: due script li estraggono
+dalle view Razor e generano i file in `src/data/`.
+
+- `node scripts/extract-services.mjs` -> `src/data/services.ts`
+- `node scripts/extract-portfolio.mjs` -> `src/data/portfolio.ts`
+
+Gli script normalizzano i percorsi delle immagini, che nel markup originale
+erano scritti a volte con lo slash iniziale e a volte senza. Senza slash il
+percorso e' relativo alla route corrente: la stessa immagine risolveva su
+alcune pagine e non su altre.
+
+### Discordanze da far confermare allo studio
+
+Cose che nel progetto originale non tornano e che sono state portate cosi'
+com'erano, perche' correggerle cambierebbe il contenuto pubblicato.
+
+**Il progetto "Edicola funeraria" ha il tag `safety`, che nessun filtro
+seleziona.** I filtri del portfolio sono `architecture`, `structural`,
+`sicurezza`, `antincendio` e `sustainable`. Quel progetto e' quindi visibile
+solo sotto "Tutti", "Architettura" e "Strutturale". Se il tag voleva dire
+`sicurezza`, va corretto in `src/data/portfolio.ts`.
+
+**Le etichette obliqua sulle anteprime del portfolio sono in inglese**
+(Architecture, STRUCTURAL, SAFETY, FIRE PREVENTION, SUSTAINABLE) su un sito
+interamente in italiano, e scritte in modo incoerente tra maiuscolo e
+minuscolo. Il tema le rende comunque tutte maiuscole, quindi la resa e'
+uniforme, ma la lingua resta quella del tema di partenza.
+
+**Il servizio "Progettazione strutturale" e' citato con due grafie diverse**
+nei collegamenti avanti e indietro delle pagine adiacenti: "Progettazione
+strutturale" e "Progettazione Strutturale". E' stata adottata la prima.
