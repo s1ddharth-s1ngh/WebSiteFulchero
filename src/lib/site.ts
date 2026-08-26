@@ -59,6 +59,65 @@ export const site = {
     { titolare: "Lorenzo Fulchero", numero: "03627170040" },
   ],
 
+  /**
+   * Profili esterni dello studio, per il campo sameAs dei dati strutturati.
+   * Collegare il profilo Google Business e' il segnale piu' forte per la
+   * ricerca locale dopo l'indirizzo e il telefono: dice ai motori che la
+   * scheda dell'attivita e il sito sono la stessa realta.
+   */
+  profili: [
+    // Link di condivisione del profilo Google Business dello studio.
+    // Risolve al pannello con identificativo /g/11x605vn_n.
+    "https://share.google/E9GKtJDfvmiCPU0H1",
+  ],
+
+  /**
+   * Dove lo studio dichiara di operare. Verzuolo e Saluzzo compaiono in ogni
+   * pagina del sito; la provincia e' nelle parole chiave dichiarate dal
+   * progetto originale. Se lo studio lavora abitualmente in altri comuni,
+   * aggiungerli qui migliora la ricerca locale su quei nomi.
+   */
+  areaServita: {
+    citta: ["Verzuolo", "Saluzzo"],
+    provincia: "Provincia di Cuneo",
+    regione: "Piemonte",
+  },
+
+  /**
+   * Competenze dichiarate nelle pagine del sito. Alimentano knowsAbout, che
+   * aiuta i motori a capire di cosa si occupa lo studio oltre al nome dei
+   * servizi.
+   */
+  discipline: [
+    "Ingegneria civile",
+    "Progettazione architettonica",
+    "Progettazione strutturale",
+    "Sicurezza nei cantieri",
+    "Progettazione antincendio",
+    "Impianti elettrici",
+    "Linee vita",
+    "Risparmio energetico",
+    "Direzione lavori",
+    "Acustica edilizia",
+    "Geotecnica",
+    "Pratiche catastali",
+  ],
+
+  /**
+   * Le persone dello studio, con i ruoli come sono raccontati nella pagina
+   * Azienda. Diventano entita Person nei dati strutturati.
+   */
+  persone: [
+    {
+      nome: "Silvano Fulchero",
+      ruolo: "Ingegnere civile, fondatore dello studio",
+      fondatore: true,
+    },
+    { nome: "Lorenzo Fulchero", ruolo: "Ingegnere civile", dal: 2015, fondatore: false },
+    { nome: "Elisabetta Fulchero", ruolo: "Ingegnere civile", dal: 2025, fondatore: false },
+    { nome: "Stefano Fulchero", ruolo: "Ingegnere elettrico", dal: 2025, fondatore: false },
+  ],
+
   /** Informative gestite su Iubenda. */
   iubenda: {
     privacyPolicy: "https://www.iubenda.com/privacy-policy/17015228",
