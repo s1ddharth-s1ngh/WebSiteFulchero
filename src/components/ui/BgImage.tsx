@@ -34,11 +34,16 @@ export function BgImage({ src, alt, scala, parallasse, posizione, priorita = fal
     .filter(Boolean)
     .join(" ");
 
+  // Un SVG non ha nulla da ottimizzare, e l'ottimizzatore di Next lo rifiuta
+  // a meno di abilitare dangerouslyAllowSVG.
+  const vettoriale = src.endsWith(".svg");
+
   return (
     <Image
       src={src}
       alt={alt}
       fill
+      unoptimized={vettoriale}
       // Immagini a tutta larghezza: il browser sceglie in base al viewport.
       sizes="100vw"
       priority={priorita}
