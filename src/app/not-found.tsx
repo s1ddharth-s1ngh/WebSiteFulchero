@@ -7,6 +7,9 @@ import { site } from "@/lib/site";
 export const metadata: Metadata = {
   title: "Pagina non trovata",
   robots: { index: false, follow: true },
+  // Senza, la pagina erediterebbe il canonical della home dal layout: si
+  // dichiarerebbe copia della home a ogni indirizzo sbagliato.
+  alternates: { canonical: null },
 };
 
 export default function NotFound() {

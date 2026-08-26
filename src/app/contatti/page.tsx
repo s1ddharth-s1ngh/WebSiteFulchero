@@ -1,3 +1,5 @@
+import type { Metadata } from "next";
+import { metadataPagina } from "@/lib/seo";
 import { Icon } from "@/components/ui/Icon";
 import { Illustration } from "@/components/ui/Illustration";
 import { PageBanner } from "@/components/ui/PageBanner";
@@ -6,6 +8,12 @@ import { Testo } from "@/components/ui/Testo";
 import { PAGINA_CONTATTI } from "@/data/pages";
 import { routes } from "@/lib/routes";
 import { indirizzoCompleto, site } from "@/lib/site";
+
+export const metadata: Metadata = metadataPagina({
+  titolo: "Contatti",
+  descrizione: PAGINA_CONTATTI.introduzione.testo,
+  percorso: routes.contatti,
+});
 
 export default function Contatti() {
   const { banner, introduzione, recapiti } = PAGINA_CONTATTI;

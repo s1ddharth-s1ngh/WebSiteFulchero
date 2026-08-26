@@ -1,3 +1,5 @@
+import type { Metadata } from "next";
+import { metadataPagina } from "@/lib/seo";
 import { ComeLavoriamo } from "@/components/sections/ComeLavoriamo";
 import { CtaContatti } from "@/components/sections/CtaContatti";
 import { BgImage } from "@/components/ui/BgImage";
@@ -10,6 +12,12 @@ import { Testo } from "@/components/ui/Testo";
 import { AZIENDA } from "@/data/company";
 import { routes } from "@/lib/routes";
 import { site } from "@/lib/site";
+
+export const metadata: Metadata = metadataPagina({
+  titolo: "Azienda",
+  descrizione: AZIENDA.chiSiamo.paragrafi[0],
+  percorso: routes.azienda,
+});
 
 export default function Azienda() {
   const { banner, chiSiamo, valori, numeri } = AZIENDA;

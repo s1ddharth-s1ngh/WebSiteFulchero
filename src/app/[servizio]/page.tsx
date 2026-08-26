@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { ArrowLink } from "@/components/ui/ArrowLink";
 import { Illustration, IllustrationFrame } from "@/components/ui/Illustration";
@@ -12,6 +13,7 @@ import {
   SERVIZI,
   type ServizioSlug,
 } from "@/lib/routes";
+import { metadataPagina } from "@/lib/seo";
 
 /**
  * Le nove pagine servizio, generate da un unico modello.
@@ -28,6 +30,25 @@ export const dynamicParams = false;
 
 export function generateStaticParams() {
   return SERVIZI.map(({ slug }) => ({ servizio: slug }));
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ servizio: string }>;
+}): Promise<Metadata> {
+  const { servizio } = await params;
+  const contenuto = SERVIZI_CONTENUTO[servizio as ServizioSlug];
+  if (!contenuto) return {};
+
+  return metadataPagina({
+    titolo: contenuto.titoloPagina,
+    // Il primo paragrafo della presentazione e' gia' scritto per spiegare il
+    // servizio a chi arriva sulla pagina: e' la descrizione migliore che
+    // esista, ed e' allineata al contenuto per costruzione.
+    descrizione: contenuto.descrizione.paragrafi[0] ?? "",
+    percorso: routes.servizio(contenuto.slug),
+  });
 }
 
 /** Le sezioni del modello sono separate da una riga orizzontale. */

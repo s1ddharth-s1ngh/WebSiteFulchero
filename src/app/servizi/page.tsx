@@ -1,3 +1,5 @@
+import type { Metadata } from "next";
+import { metadataPagina } from "@/lib/seo";
 import { ComeLavoriamo } from "@/components/sections/ComeLavoriamo";
 import { CtaContatti } from "@/components/sections/CtaContatti";
 import { Illustration, IllustrationFrame } from "@/components/ui/Illustration";
@@ -7,6 +9,13 @@ import { ServiceCard } from "@/components/ui/ServiceCard";
 import { PAGINA_SERVIZI } from "@/data/pages";
 import { SERVIZI_CONTENUTO } from "@/data/services";
 import { routes, SERVIZI } from "@/lib/routes";
+
+export const metadata: Metadata = metadataPagina({
+  titolo: "Servizi",
+  descrizione:
+    "Progettazione architettonica e strutturale, sicurezza nei cantieri, antincendio, impianti elettrici, linee vita, risparmio energetico e lavori pubblici a Verzuolo e Saluzzo.",
+  percorso: routes.servizi,
+});
 
 export default function Servizi() {
   const { banner, elenco, illustrazione } = PAGINA_SERVIZI;

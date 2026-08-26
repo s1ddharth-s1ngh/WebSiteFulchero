@@ -1,9 +1,17 @@
+import type { Metadata } from "next";
+import { metadataPagina } from "@/lib/seo";
 import { PortfolioGrid } from "@/components/portfolio/PortfolioGrid";
 import { PageBanner } from "@/components/ui/PageBanner";
 import { Testo } from "@/components/ui/Testo";
 import { PAGINA_PORTFOLIO } from "@/data/pages";
 import { FILTRI_PORTFOLIO, VOCI_PORTFOLIO } from "@/data/portfolio";
 import { routes } from "@/lib/routes";
+
+export const metadata: Metadata = metadataPagina({
+  titolo: "Portfolio",
+  descrizione: PAGINA_PORTFOLIO.introduzione.testo,
+  percorso: routes.portfolio,
+});
 
 export default function Portfolio() {
   const { banner, introduzione } = PAGINA_PORTFOLIO;
