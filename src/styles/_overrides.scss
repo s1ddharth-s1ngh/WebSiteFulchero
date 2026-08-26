@@ -47,6 +47,20 @@ card servizio
 }
 
 /* -------------------------------------------
+pulsante del menu
+------------------------------------------- */
+
+/* Il tema disegna l'hamburger come un <div>, quindi non raggiungibile da
+   tastiera ne annunciato con il suo stato aperto/chiuso. Qui e' un <button>:
+   servono le neutralizzazioni degli stili di default del pulsante. */
+button.mil-menu-btn {
+    padding: 0;
+    border: none;
+    background: none;
+    appearance: none;
+}
+
+/* -------------------------------------------
 testo su fondo scuro
 ------------------------------------------- */
 

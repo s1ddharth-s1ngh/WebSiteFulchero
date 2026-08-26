@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import Script from "next/script";
+import { Header } from "@/components/layout/Header";
 import { fontVariables } from "@/lib/fonts";
 import { site } from "@/lib/site";
 import "@/styles/style.scss";
@@ -58,6 +59,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang={site.lingua} className={fontVariables}>
       <body>
         <div className="mil-wrapper">
+          <Header />
           <div id="content">{children}</div>
         </div>
 

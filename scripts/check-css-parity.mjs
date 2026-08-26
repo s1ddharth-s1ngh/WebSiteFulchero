@@ -39,6 +39,11 @@ const INTENZIONALI = [
     lato: "legacy",
     motivo: "i font passano da next/font, self-hosted, invece che da un @import bloccante",
   },
+  {
+    match: (selector) => selector === "button.mil-menu-btn",
+    lato: "porting",
+    motivo: "l'hamburger e' un <button> invece di un <div>: reset degli stili nativi",
+  },
 ];
 
 /**
