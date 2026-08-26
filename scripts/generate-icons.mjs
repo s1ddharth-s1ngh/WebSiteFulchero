@@ -52,6 +52,18 @@ async function main() {
     .toFile("src/app/apple-icon.png");
   console.log(`src/app/apple-icon.png: ${kb("src/app/apple-icon.png")}`);
 
+  // Icone dichiarate nel web manifest. L'installazione sulla schermata home
+  // vuole almeno una 192 e una 512.
+  for (const lato of [192, 512]) {
+    const uscita = `public/img/logo/icona-${lato}.png`;
+    await sharp(SQUARE_LOGO)
+      .resize(lato, lato, { fit: "cover" })
+      .flatten({ background: LIGHT_BG })
+      .png(PNG_OPTIONS)
+      .toFile(uscita);
+    console.log(`${uscita}: ${kb(uscita)}`);
+  }
+
   // OpenGraph 1200x630. Il marchio quadrato usato oggi viene ritagliato male
   // dalle anteprime social, che assumono 1.91:1. Il lockup orizzontale e
   // bianco, quindi va su fondo blu.
