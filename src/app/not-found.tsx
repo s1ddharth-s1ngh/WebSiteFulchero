@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { BgImage } from "@/components/ui/BgImage";
+import { PageBanner } from "@/components/ui/PageBanner";
 import { routes } from "@/lib/routes";
 import { site } from "@/lib/site";
 
@@ -12,24 +12,12 @@ export const metadata: Metadata = {
 export default function NotFound() {
   return (
     <>
-      <section className="mil-banner mil-banner-sm">
-        <BgImage
-          src="/img/arch/safety.jpg"
-          alt=""
-          posizione="top"
-          scala={{ da: 0.4, a: 1.4 }}
-          priorita
-        />
-        <div className="mil-overlay" />
-        <div className="container">
-          <div className="mil-banner-content mil-center">
-            <div className="mil-mb-90">
-              <span className="mil-suptitle mil-upper mil-light mil-mb-30">Errore 404</span>
-              <h1 className="mil-light mil-upper mil-mb-30">Pagina non trovata</h1>
-            </div>
-          </div>
-        </div>
-      </section>
+      <PageBanner
+        immagine={{ src: "/img/arch/safety.jpg", alt: "", posizione: "top" }}
+        suptitolo="Errore 404"
+        titolo="Pagina non trovata"
+        centrato
+      />
 
       <section>
         <div className="container mil-p-120-120">
