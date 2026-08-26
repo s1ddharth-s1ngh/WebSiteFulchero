@@ -12,6 +12,7 @@
     "check:assets": "node scripts/check-assets.mjs",
     "check:css": "node scripts/check-css-parity.mjs",
     "check:content": "tsx scripts/check-content.ts",
+    "check:routes": "tsx scripts/check-routes.mts",
     "format": "prettier --write \"**/*.{ts,tsx,mjs,scss,css,json,md}\"",
     "format:check": "prettier --check \"**/*.{ts,tsx,mjs,scss,css,json,md}\"",
     "check": "npm run lint && npm run typecheck && npm run check:assets && npm run check:css && npm run check:content && npm run format:check"
