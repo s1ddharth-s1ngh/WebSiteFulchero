@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
+import { Button } from "@/components/ui/Button";
 import { Logo } from "@/components/ui/Logo";
 import { NAVIGAZIONE, routes, SERVIZIO_SLUGS } from "@/lib/routes";
 import { site } from "@/lib/site";
@@ -84,13 +85,9 @@ export function Header() {
           </div>
 
           <div className="mil-top-panel-buttons">
-            <a
-              href={`tel:${site.contatti.telefono}`}
-              className="mil-button mil-sm"
-              title={`Chiama ${site.nome}`}
-            >
+            <Button href={`tel:${site.contatti.telefono}`} piccolo title={`Chiama ${site.nome}`}>
               Chiama Ora
-            </a>
+            </Button>
             <button
               type="button"
               className={`mil-menu-btn${menuAperto ? " mil-active" : ""}`}
