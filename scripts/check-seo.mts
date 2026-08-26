@@ -192,15 +192,78 @@ for (const [testo, sorgenti] of altAmbigui) {
 }
 
 // --- dati strutturati -----------------------------------------------------
+
+/** Campi senza i quali una scheda di attivita locale non e' utilizzabile. */
+const CAMPI_ATTIVITA = ["name", "url", "telephone", "address", "geo"];
+
+/** Percorre un oggetto e raccoglie ogni valore, con il percorso in cui sta. */
+function* valori(nodo: unknown, percorso = ""): Generator<[string, unknown]> {
+  if (Array.isArray(nodo)) {
+    for (const [indice, voce] of nodo.entries()) yield* valori(voce, `${percorso}[${indice}]`);
+  } else if (nodo && typeof nodo === "object") {
+    for (const [chiave, valore] of Object.entries(nodo)) {
+      yield [percorso ? `${percorso}.${chiave}` : chiave, valore];
+      yield* valori(valore, percorso ? `${percorso}.${chiave}` : chiave);
+    }
+  }
+}
+
 const tipiSchema = new Map<string, number>();
+
 for (const pagina of pagine) {
   for (const blocco of pagina.schema) {
-    const contenuto = (blocco["@graph"] as Record<string, unknown>[] | undefined) ?? [blocco];
-    for (const entita of contenuto) {
-      const tipo = String(entita["@type"] ?? "senza @type");
+    const entita = (blocco["@graph"] as Record<string, unknown>[] | undefined) ?? [blocco];
+
+    if (!blocco["@context"] && !("@graph" in blocco)) {
+      problemi.push(`${pagina.file}: blocco di dati strutturati senza @context`);
+    }
+
+    const identificativi = new Set(
+      entita.map((voce) => voce["@id"]).filter((id): id is string => typeof id === "string"),
+    );
+
+    for (const voce of entita) {
+      const tipo = String(voce["@type"] ?? "senza @type");
       tipiSchema.set(tipo, (tipiSchema.get(tipo) ?? 0) + 1);
-      if (tipo === "JSON NON VALIDO")
+
+      if (tipo === "JSON NON VALIDO") {
         problemi.push(`${pagina.file}: blocco JSON-LD non analizzabile`);
+        continue;
+      }
+      if (tipo === "senza @type") {
+        problemi.push(`${pagina.file}: entita senza @type`);
+      }
+      if (tipo === "ProfessionalService" || tipo === "LocalBusiness") {
+        for (const campo of CAMPI_ATTIVITA) {
+          if (!voce[campo]) problemi.push(`${pagina.file}: scheda attivita senza ${campo}`);
+        }
+        const indirizzo = voce["address"] as Record<string, unknown> | undefined;
+        if (indirizzo && indirizzo["@type"] !== "PostalAddress") {
+          problemi.push(`${pagina.file}: address senza "@type": "PostalAddress"`);
+        }
+      }
+    }
+
+    // Un riferimento {"@id": ...} che non punta a nessuna entita del grafo e'
+    // un collegamento rotto: i motori lo ignorano in silenzio.
+    for (const [percorso, valore] of valori(entita)) {
+      if (valore === undefined || valore === null || valore === "") {
+        problemi.push(`${pagina.file}: campo vuoto in ${percorso}`);
+        continue;
+      }
+      if (
+        typeof valore === "object" &&
+        !Array.isArray(valore) &&
+        Object.keys(valore).length === 1 &&
+        "@id" in valore
+      ) {
+        const riferimento = (valore as { "@id": unknown })["@id"];
+        if (typeof riferimento === "string" && !identificativi.has(riferimento)) {
+          problemi.push(
+            `${pagina.file}: riferimento @id non risolto in ${percorso}: ${riferimento}`,
+          );
+        }
+      }
     }
   }
 }
