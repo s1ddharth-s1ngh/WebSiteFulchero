@@ -3,6 +3,7 @@ import Script from "next/script";
 import { AnimationProvider } from "@/components/animation/AnimationProvider";
 import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
+import { ScrollProgress } from "@/components/layout/ScrollProgress";
 import { fontVariables } from "@/lib/fonts";
 import { site } from "@/lib/site";
 import "@/styles/style.scss";
@@ -61,6 +62,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang={site.lingua} className={fontVariables}>
       <body>
         <div className="mil-wrapper">
+          <ScrollProgress />
           <Header />
           <div id="content">{children}</div>
           <Footer />
