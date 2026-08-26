@@ -149,3 +149,35 @@ uniforme, ma la lingua resta quella del tema di partenza.
 **Il servizio "Progettazione strutturale" e' citato con due grafie diverse**
 nei collegamenti avanti e indietro delle pagine adiacenti: "Progettazione
 strutturale" e "Progettazione Strutturale". E' stata adottata la prima.
+
+### Refusi presenti nel sito pubblicato
+
+Riportati tali e quali per non alterare il contenuto: sono correzioni da una
+parola che lo studio puo' fare quando vuole.
+
+- **`anticendio`** invece di `antincendio`, nel titolo della quarta slide del
+  banner in home (`src/data/home.ts`).
+- **`SCOPRI DI PIù`** con la `ù` minuscola in mezzo a un titolo maiuscolo, in
+  due punti della home. Corretto in `SCOPRI DI PIÙ`: la resa a schermo non
+  cambia, perche' il tema applica `text-transform: uppercase`, ma il testo
+  sottostante ora e' corretto anche per chi legge il sorgente o usa uno
+  screen reader.
+
+### Sezione nascosta non portata
+
+La home aveva **due** sezioni "Progetti in Evidenza" con lo stesso testo: una
+con la lista di titoli e l'immagine che segue il cursore, l'altra con
+l'accordion. La prima e' dentro:
+
+```html
+<section class="d-none d-lg-block d-block d-lg-none">
+```
+
+In `bootstrap-grid.css` `.d-none` e' definita dopo `.d-block`, e `.d-lg-none`
+dopo `.d-lg-block`: vincono quindi `.d-none` sotto i 992px e `.d-lg-none`
+sopra. **La sezione e' invisibile a ogni larghezza di schermo.**
+
+Non e' stata portata, e con lei non serve nemmeno l'effetto "immagine che segue
+il cursore" di `main.js`, che agiva solo su quel markup. E' anche il motivo per
+cui la 404 su `img/photo/project2.jpg` non si era mai notata: l'immagine non
+veniva disegnata.

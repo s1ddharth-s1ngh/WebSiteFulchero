@@ -53,6 +53,13 @@ export type ContenutoServizio = {
     }[];
   };
 
+  /**
+   * Testo breve della card servizio, mostrata nella griglia della pagina
+   * Servizi e nelle tre card in evidenza sulla Home. Nel progetto originale
+   * era scritta due volte, in Servizi.cshtml e in Index.cshtml.
+   */
+  cardTesto: string;
+
   /** Fotografia a piena larghezza tra le caratteristiche e i principi. */
   illustrazione: Immagine;
 

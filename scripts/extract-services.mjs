@@ -139,6 +139,38 @@ function sezione(sorgente, nome) {
   return parse(sorgente.slice(apertura, chiusura));
 }
 
+/**
+ * Testo breve delle card servizio, che compaiono identiche nella griglia della
+ * pagina Servizi e nella sezione "Cosa Facciamo" della Home. Vengono lette una
+ * volta sola da Servizi.cshtml, dove ci sono tutte e nove.
+ */
+function cardServizio() {
+  const leggi = (file) => {
+    const documento = parse(readFileSync(join(VIEWS_DIR, file), "utf8"));
+    return documento.querySelectorAll("a.mil-service-card").map((card) => ({
+      view: card.getAttribute("asp-action"),
+      titolo: testo(card.querySelector("h4")),
+      testo: testo(card.querySelector("p")),
+    }));
+  };
+
+  const daServizi = new Map(leggi("Servizi.cshtml").map((card) => [card.view, card]));
+
+  // Le tre card in evidenza sulla Home devono essere le stesse: se divergono,
+  // lo stesso servizio si presenta in due modi diversi nel sito.
+  for (const cardHome of leggi("Index.cshtml")) {
+    const cardServizi = daServizi.get(cardHome.view);
+    if (!cardServizi) {
+      console.warn("  ATTENZIONE la Home mostra " + cardHome.view + ", assente in Servizi.cshtml");
+    } else if (cardServizi.testo !== cardHome.testo) {
+      console.warn("  ATTENZIONE testo diverso tra Home e Servizi per " + cardHome.view);
+    }
+  }
+  return daServizi;
+}
+
+const CARD = cardServizio();
+
 function estraiPagina(slug, nomeView) {
   const sorgente = readFileSync(join(VIEWS_DIR, nomeView + ".cshtml"), "utf8");
 
@@ -196,6 +228,10 @@ function estraiPagina(slug, nomeView) {
         testo: testo(card.querySelector(".mil-divider-sm + p")),
       })),
     },
+
+    // Testo breve mostrato nella griglia della pagina Servizi e nelle tre
+    // card in evidenza sulla Home.
+    cardTesto: CARD.get(nomeView)?.testo ?? "",
 
     conclusioni: {
       titolo: testo(conclusioni.querySelector("h2")),
