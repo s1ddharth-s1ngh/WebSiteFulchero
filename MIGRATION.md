@@ -24,10 +24,18 @@ posizionamento acquisito.
 | i nove servizi | nove view quasi identiche     | `app/[servizio]/page.tsx`            |
 | 404 e 500      | `Views/Shared/Error.cshtml`   | `app/not-found.tsx`, `app/error.tsx` |
 
-Non viene riprodotta la route MVC di default `{controller}/{action}/{id?}`,
-che esponeva ogni pagina anche su `/Home/Azienda`, `/Home/Servizi` e cosi'
-via: erano URL duplicati raggiungibili dai crawler, senza un canonical che li
-disambiguasse. Ora rispondono 404.
+`Program.cs` registra anche la route MVC di default
+`{controller=Home}/{action=Index}/{id?}`, che a prima vista esporrebbe ogni
+pagina una seconda volta su `/Home/Azienda`, `/Home/Servizi` e cosi' via.
+Verificato sul sito in produzione: rispondono 404. In ASP.NET Core un'azione
+con un attributo `[Route]` esce dal routing convenzionale, e tutte le azioni
+di `HomeController` ne hanno uno. Non c'erano quindi URL duplicati da
+redirezionare, e il nuovo sito risponde 404 su quegli indirizzi come faceva il
+vecchio.
+
+L'unica azione senza `[Route]` e' `Error()`, raggiungibile su `/Home/Error`:
+in Next la pagina di errore e' una convenzione del file system e non ha un
+proprio indirizzo.
 
 ---
 

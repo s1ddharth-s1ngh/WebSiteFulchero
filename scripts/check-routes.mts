@@ -14,7 +14,11 @@ const BASE = (process.argv[2] ?? "http://localhost:3000").replace(/\/$/, "");
 /** File generati dalle convenzioni di Next, non raggiungibili dai link. */
 const RISORSE_DI_SERVIZIO = ["/sitemap.xml", "/robots.txt", "/manifest.webmanifest", "/icon.png"];
 
-/** Indirizzi che devono rispondere 404, non renderizzare qualcosa. */
+/**
+ * Indirizzi che devono rispondere 404, non renderizzare qualcosa.
+ * /Home/Azienda rispondeva 404 anche sul vecchio sito: qui si verifica che
+ * continui a farlo e che il segmento dinamico alla radice non se lo prenda.
+ */
 const INDIRIZZI_INESISTENTI = [
   "/pagina-che-non-esiste",
   "/Home/Azienda",

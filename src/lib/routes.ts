@@ -5,9 +5,11 @@
  * con attributi [Route] su HomeController: il dominio e' indicizzato e
  * cambiarli significherebbe perdere il posizionamento acquisito.
  *
- * Non viene riprodotta la route MVC di default {controller}/{action}/{id?},
- * che esponeva ogni pagina anche su /Home/Azienda e simili: erano URL
- * duplicati raggiungibili dai crawler e senza canonical che li disambiguasse.
+ * Non viene riprodotta la route MVC di default {controller}/{action}/{id?}.
+ * Non serve: verificato sul sito in produzione che /Home/Azienda e simili
+ * rispondano 404, perche' in ASP.NET Core un'azione con un attributo [Route]
+ * esce dal routing convenzionale, e tutte le azioni di HomeController ne hanno
+ * uno. Non c'erano URL duplicati da preservare.
  */
 
 /**
