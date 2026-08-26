@@ -1,36 +1,110 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Studio Fulchero
 
-## Getting Started
+Sito istituzionale di Studio Fulchero, ingegneria civile, architettura e
+geometra a Verzuolo e Saluzzo. [www.studiofulchero.it](https://www.studiofulchero.it)
 
-First, run the development server:
+Next.js 16 con App Router, TypeScript e SCSS. Tutte le pagine sono generate
+staticamente in fase di build.
+
+Riscrittura del precedente sito in ASP.NET Core MVC: la mappa della
+conversione, i difetti trovati nel progetto di partenza e le decisioni prese
+sono in [MIGRATION.md](MIGRATION.md). Le convenzioni di lavoro sono in
+[CONTRIBUTING.md](CONTRIBUTING.md).
+
+## Avvio
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run dev          # http://localhost:3000
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Richiede Node 20.9 o superiore. La prima build scarica i font Sora e Caveat da
+Google e li salva nel progetto: serve una connessione.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Comandi
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| Comando                 | Cosa fa                                                      |
+| ----------------------- | ------------------------------------------------------------ |
+| `npm run dev`           | server di sviluppo                                           |
+| `npm run build`         | build di produzione                                          |
+| `npm start`             | serve la build                                               |
+| `npm run check`         | lint, tipi, asset, parita CSS, contenuti e formattazione     |
+| `npm run lint`          | ESLint                                                       |
+| `npm run typecheck`     | TypeScript in modalita strict                                |
+| `npm run check:assets`  | ogni `/img/...` citato nel codice esiste, con lo stesso case |
+| `npm run check:css`     | il CSS compilato coincide con quello del sito precedente     |
+| `npm run check:content` | ogni testo in `src/data/` compare nelle view originali       |
+| `npm run check:routes`  | route e risorse su un'istanza avviata (serve `npm start`)    |
+| `npm run format`        | Prettier                                                     |
 
-## Learn More
+`check:css` e `check:content` confrontano con il progetto ASP.NET originale:
+se non e' presente sulla macchina escono con successo senza fare nulla.
 
-To learn more about Next.js, take a look at the following resources:
+## Struttura
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```
+src/
+  app/            una cartella per route, piu le nove pagine servizio
+                  generate da src/app/[servizio]
+  components/
+    layout/       intestazione, footer, barra di avanzamento
+    sections/     sezioni condivise tra piu pagine
+    sliders/      carosello di apertura
+    portfolio/    griglia masonry con i filtri
+    ui/           mattoni del tema (banner, card, illustrazioni, ...)
+    animation/    animazioni in scroll
+    seo/          dati strutturati
+  data/           tutti i testi del sito
+  lib/            configurazione, route, font, SEO
+  styles/         SCSS del tema
+scripts/          estrazione dei contenuti e verifiche
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+I testi non stanno nel JSX: vivono in `src/data/` e sono verificabili contro le
+view originali con `npm run check:content`. I dati anagrafici dello studio
+stanno una volta sola in `src/lib/site.ts`.
 
-## Deploy on Vercel
+Le classi del design system sono quelle del tema (`mil-*`) e non vanno
+rinominate: il CSS portato da `style.css` ci si appoggia, e `npm run check:css`
+verifica che resti identico.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Aggiornare i contenuti
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+| Cosa                                    | Dove                    |
+| --------------------------------------- | ----------------------- |
+| Recapiti, orari, indirizzo, partite IVA | `src/lib/site.ts`       |
+| Testi delle nove pagine servizio        | `src/data/services.ts`  |
+| Progetti del portfolio e filtri         | `src/data/portfolio.ts` |
+| Home                                    | `src/data/home.ts`      |
+| Azienda                                 | `src/data/company.ts`   |
+| Servizi, Portfolio, Contatti            | `src/data/pages.ts`     |
+| Sezioni condivise                       | `src/data/sections.ts`  |
+| Elenco e ordine dei servizi             | `src/lib/routes.ts`     |
+
+`services.ts` e `portfolio.ts` sono generati dagli script di estrazione: se
+vanno modificati a mano, va tolta l'intestazione che li dichiara generati.
+
+L'ordine dell'array in `src/lib/routes.ts` determina il sottomenu, la griglia
+della pagina Servizi e i collegamenti avanti e indietro tra le pagine
+servizio: inserire un servizio in mezzo aggiorna tutto e tre.
+
+## Immagini
+
+Vanno in `public/img/`, con nomi in minuscolo. Passano da `next/image`, che le
+serve in AVIF o WebP alla risoluzione richiesta dal viewport: non serve
+prepararne piu versioni.
+
+Se il logo cambia, `node scripts/generate-icons.mjs` rigenera favicon, apple
+touch icon, immagine OpenGraph e le icone del manifest.
+
+## Deploy
+
+La build produce un sito statico servito da Node. Su Vercel non serve
+configurare nulla. Altrove:
+
+```bash
+npm ci && npm run build && npm start
+```
+
+`site.url` in `src/lib/site.ts` deve corrispondere al dominio pubblicato:
+canonical, sitemap e dati strutturati partono da li'.

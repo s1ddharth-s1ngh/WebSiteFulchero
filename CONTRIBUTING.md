@@ -54,12 +54,12 @@ npm run check     # lint + typecheck + check:assets + format:check
 
 I singoli passi:
 
-| Comando                | Cosa verifica                                            |
-| ---------------------- | -------------------------------------------------------- |
-| `npm run lint`         | regole ESLint di Next 16 (core-web-vitals + typescript)   |
-| `npm run typecheck`    | TypeScript in modalita strict, senza emissione            |
-| `npm run check:assets` | ogni `/img/...` citato nel codice esiste in `public/`     |
-| `npm run format:check` | formattazione Prettier                                    |
+| Comando                | Cosa verifica                                           |
+| ---------------------- | ------------------------------------------------------- |
+| `npm run lint`         | regole ESLint di Next 16 (core-web-vitals + typescript) |
+| `npm run typecheck`    | TypeScript in modalita strict, senza emissione          |
+| `npm run check:assets` | ogni `/img/...` citato nel codice esiste in `public/`   |
+| `npm run format:check` | formattazione Prettier                                  |
 
 ## Stile del codice
 
