@@ -9,7 +9,7 @@
  *
  * Uso: node scripts/check-css-parity.mjs [percorso/style.css]
  */
-import { readFileSync } from "node:fs";
+import { existsSync, readFileSync } from "node:fs";
 import * as sass from "sass";
 
 const LEGACY_CSS =
@@ -149,6 +149,13 @@ const { css: compiled } = sass.compile("src/styles/style.scss", {
   style: "expanded",
   loadPaths: ["src/styles"],
 });
+
+if (!existsSync(LEGACY_CSS)) {
+  // Il confronto ha senso solo su una macchina che ha ancora il progetto
+  // ASP.NET accanto. Altrove non e' un errore: non c'e' nulla da confrontare.
+  console.log(`check-css-parity: saltato, ${LEGACY_CSS} non trovato`);
+  process.exit(0);
+}
 
 const mine = parse(compiled);
 const legacy = parse(readFileSync(LEGACY_CSS, "utf8"));

@@ -82,3 +82,34 @@ foto demo) e dalla ricompressione del logo (1,2 MB -> 270 KB).
 Le immagini restanti non sono state ricompresse a mano: passano da
 `next/image`, che le serve in AVIF o WebP alla risoluzione richiesta dal
 viewport.
+
+---
+
+## Design system
+
+I sorgenti SCSS del tema erano disallineati dal CSS effettivamente servito:
+`wwwroot/css/style.css` e' stato modificato a mano ad aprile 2025, mentre
+`wwwroot/scss/` e' fermo a dicembre 2024. Ricompilare quei sorgenti avrebbe
+riportato il sito al verde lime del tema Ruizarch e perso tutte le
+personalizzazioni.
+
+`npm run check:css` compila `src/styles/style.scss` e lo confronta regola per
+regola con lo `style.css` del progetto ASP.NET. Normalizza le differenze di
+sola scrittura (commenti inline, spaziatura, parole chiave di colore, nomi di
+famiglia esposti come CSS variable) e segnala tutto il resto.
+
+Ogni differenza ammessa e' dichiarata nell'array `INTENZIONALI` con la sua
+motivazione. Allo stato: 552 regole compilate contro 561 originali, differenza
+pari alle 8 regole morte scartate piu l'`@import` verso Google Fonts.
+
+Divergenze recuperate dal CSS di produzione e riportate nei sorgenti:
+
+| Regola                                | Tema           | Produzione                        |
+| ------------------------------------- | -------------- | --------------------------------- |
+| accento                               | rgb(188,255,0) | #5ab7e0                           |
+| accento dei `border-image` tratteggiati | uguale        | #83afc9, desaturato               |
+| `.mil-light-soft`                     | bianco 50%     | bianco 84%                        |
+| `.mil-overlay`                        | nero 80%       | nero 60%                          |
+| `.mil-top-panel.mil-active`           | nero 90%       | nero 77%                          |
+| `.mil-project-descr`                  | fondo pieno    | fondo 60% + `backdrop-filter`     |
+| soglia menu mobile                    | 1200px         | 1000px                            |
