@@ -50,6 +50,19 @@ card servizio
 pulsante del menu
 ------------------------------------------- */
 
+/* Stesso motivo delle frecce del carosello, che nel tema erano <div>. */
+button.mil-slider-button {
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 0;
+  border-top: none;
+  border-bottom: none;
+  border-left: none;
+  background: none;
+  font: inherit;
+  appearance: none;
+}
+
 /* Il tema disegna l'hamburger come un <div>, quindi non raggiungibile da
    tastiera ne annunciato con il suo stato aperto/chiuso. Qui e' un <button>:
    servono le neutralizzazioni degli stili di default del pulsante. */

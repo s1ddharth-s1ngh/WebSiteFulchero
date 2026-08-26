@@ -41,9 +41,11 @@ const INTENZIONALI = [
     motivo: "i font passano da next/font, self-hosted, invece che da un @import bloccante",
   },
   {
-    match: (selector) => selector === "button.mil-menu-btn",
+    match: (selector) =>
+      selector === "button.mil-menu-btn" || selector === "button.mil-slider-button",
     lato: "porting",
-    motivo: "l'hamburger e' un <button> invece di un <div>: reset degli stili nativi",
+    motivo:
+      "hamburger e frecce del carosello sono <button> invece di <div>: reset degli stili nativi",
   },
   {
     match: (selector) => /^\.mil-footer-(riga|fiscale|blocco-fiscale|credits)$/.test(selector),

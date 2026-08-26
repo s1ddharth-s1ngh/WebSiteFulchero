@@ -38,7 +38,10 @@ async function main() {
 
   // Favicon. Next genera da solo il <link rel="icon"> da src/app/icon.png.
   // 256px copre anche l'icona da 192px della home screen Android.
-  await sharp(SQUARE_LOGO).resize(256, 256, { fit: "cover" }).png(PNG_OPTIONS).toFile("src/app/icon.png");
+  await sharp(SQUARE_LOGO)
+    .resize(256, 256, { fit: "cover" })
+    .png(PNG_OPTIONS)
+    .toFile("src/app/icon.png");
   console.log(`src/app/icon.png: ${kb("src/app/icon.png")}`);
 
   // Apple touch icon: iOS ignora la trasparenza, meglio un fondo esplicito.
