@@ -7,6 +7,7 @@
  *      npx tsx scripts/check-routes.mts [http://localhost:3000]
  */
 import { TUTTE_LE_ROUTE } from "@/lib/routes";
+import { site } from "@/lib/site";
 
 const BASE = (process.argv[2] ?? "http://localhost:3000").replace(/\/$/, "");
 
@@ -37,11 +38,18 @@ async function stato(url: string, metodo: "GET" | "HEAD" = "GET") {
 function risorseCitate(html: string): string[] {
   const trovate = new Set<string>();
 
-  // `content` copre og:image e twitter:image, che non stanno in src ne in href
-  // e sfuggirebbero al controllo.
-  for (const [, valore] of html.matchAll(/(?:src|href|content)="(\/[^"]*)"/g)) {
-    if (valore.startsWith("//")) continue;
-    trovate.add(valore.replace(/&amp;/g, "&"));
+  // `content` copre og:image e twitter:image, che non stanno ne in src ne in
+  // href. Next li scrive come URL assoluti sul dominio di produzione: per
+  // interrogarli sull'istanza locale va tolta l'origine.
+  const locale = (valore: string): string | null => {
+    if (valore.startsWith(site.url)) return valore.slice(site.url.length) || "/";
+    if (valore.startsWith("//") || /^https?:/.test(valore)) return null;
+    return valore.startsWith("/") ? valore : null;
+  };
+
+  for (const [, valore] of html.matchAll(/(?:src|href|content)="([^"]*)"/g)) {
+    const percorso = locale(valore.replace(/&amp;/g, "&"));
+    if (percorso) trovate.add(percorso);
   }
   for (const [, srcset] of html.matchAll(/srcset="([^"]*)"/g)) {
     for (const voce of srcset.split(",")) {
