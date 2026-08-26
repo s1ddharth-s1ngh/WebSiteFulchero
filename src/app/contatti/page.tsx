@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { DatiStrutturati } from "@/components/seo/DatiStrutturati";
 import { metadataPagina } from "@/lib/seo";
 import { Icon } from "@/components/ui/Icon";
 import { Illustration } from "@/components/ui/Illustration";
@@ -16,20 +17,30 @@ export const metadata: Metadata = metadataPagina({
   anteprima: "contatti",
 });
 
+const BRICIOLE = [
+  { href: routes.home, etichetta: "Home" },
+  { href: routes.contatti, etichetta: "Contatti" },
+];
+
 export default function Contatti() {
   const { banner, introduzione, recapiti } = PAGINA_CONTATTI;
   const { contatti, indirizzo } = site;
 
   return (
     <>
+      <DatiStrutturati
+        percorso={routes.contatti}
+        titolo={RICERCA_PAGINE.contatti.titolo}
+        descrizione={RICERCA_PAGINE.contatti.descrizione}
+        immagine="/img/og/contatti.jpg"
+        briciole={BRICIOLE}
+      />
+
       <PageBanner
         immagine={banner.immagine}
         scala={banner.scala}
         titolo={banner.titolo}
-        briciole={[
-          { href: routes.home, etichetta: "Home" },
-          { href: routes.contatti, etichetta: "Contatti" },
-        ]}
+        briciole={BRICIOLE}
         centrato
       />
 

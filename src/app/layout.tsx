@@ -3,12 +3,10 @@ import Script from "next/script";
 import { AnimationProvider } from "@/components/animation/AnimationProvider";
 import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
-import { JsonLd } from "@/components/seo/JsonLd";
 import { ScrollProgress } from "@/components/layout/ScrollProgress";
 import { RICERCA_HOME } from "@/data/seo";
 import { fontVariables } from "@/lib/fonts";
 import { site } from "@/lib/site";
-import { attivita } from "@/lib/structured-data";
 // La griglia va caricata prima del tema, come nel layout Razor: alcune regole
 // del tema contano di poter sovrascrivere quelle dei container.
 import "@/styles/vendor/bootstrap-grid.css";
@@ -75,9 +73,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         </div>
 
         <AnimationProvider />
-
-        {/* Scheda dell'attivita, valida per tutte le pagine. */}
-        <JsonLd dati={attivita()} />
 
         {/* Banner di gestione del consenso. Va caricato presto per essere
             mostrato prima che l'utente interagisca con la pagina. */}

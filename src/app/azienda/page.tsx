@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { DatiStrutturati } from "@/components/seo/DatiStrutturati";
 import { metadataPagina } from "@/lib/seo";
 import { ComeLavoriamo } from "@/components/sections/ComeLavoriamo";
 import { CtaContatti } from "@/components/sections/CtaContatti";
@@ -20,19 +21,29 @@ export const metadata: Metadata = metadataPagina({
   anteprima: "azienda",
 });
 
+const BRICIOLE = [
+  { href: routes.home, etichetta: "Home" },
+  { href: routes.azienda, etichetta: "Azienda" },
+];
+
 export default function Azienda() {
   const { banner, chiSiamo, valori, numeri } = AZIENDA;
 
   return (
     <>
+      <DatiStrutturati
+        percorso={routes.azienda}
+        titolo={RICERCA_PAGINE.azienda.titolo}
+        descrizione={RICERCA_PAGINE.azienda.descrizione}
+        immagine="/img/og/azienda.jpg"
+        briciole={BRICIOLE}
+      />
+
       <PageBanner
         immagine={banner.immagine}
         scala={banner.scala}
         titolo={banner.titolo}
-        briciole={[
-          { href: routes.home, etichetta: "Home" },
-          { href: routes.azienda, etichetta: "Azienda" },
-        ]}
+        briciole={BRICIOLE}
         centrato
       />
 

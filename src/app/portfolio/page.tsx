@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { DatiStrutturati } from "@/components/seo/DatiStrutturati";
 import { metadataPagina } from "@/lib/seo";
 import { PortfolioGrid } from "@/components/portfolio/PortfolioGrid";
 import { PageBanner } from "@/components/ui/PageBanner";
@@ -14,21 +15,35 @@ export const metadata: Metadata = metadataPagina({
   anteprima: "portfolio",
 });
 
+/** Solo i progetti: i distanziatori sono celle vuote della griglia. */
+const PROGETTI = VOCI_PORTFOLIO.filter((voce) => voce.tipo === "progetto");
+
+const BRICIOLE = [
+  { href: routes.home, etichetta: "Home" },
+  // Nel markup questa voce puntava a un'azione "Portfoglio", che sul
+  // controller non esiste: il link finiva su /Home/Portfoglio.
+  { href: routes.portfolio, etichetta: "Portfolio" },
+];
+
 export default function Portfolio() {
   const { banner, introduzione } = PAGINA_PORTFOLIO;
 
   return (
     <>
+      <DatiStrutturati
+        percorso={routes.portfolio}
+        titolo={RICERCA_PAGINE.portfolio.titolo}
+        descrizione={RICERCA_PAGINE.portfolio.descrizione}
+        immagine="/img/og/portfolio.jpg"
+        briciole={BRICIOLE}
+        progetti={PROGETTI}
+      />
+
       <PageBanner
         immagine={banner.immagine}
         scala={banner.scala}
         titolo={banner.titolo}
-        briciole={[
-          { href: routes.home, etichetta: "Home" },
-          // Nel markup questa voce puntava a un'azione "Portfoglio", che sul
-          // controller non esiste: il link finiva su /Home/Portfoglio.
-          { href: routes.portfolio, etichetta: "Portfolio" },
-        ]}
+        briciole={BRICIOLE}
         centrato
       />
 

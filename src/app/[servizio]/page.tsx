@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { JsonLd } from "@/components/seo/JsonLd";
+import { DatiStrutturati } from "@/components/seo/DatiStrutturati";
 import { ArrowLink } from "@/components/ui/ArrowLink";
 import { Illustration, IllustrationFrame } from "@/components/ui/Illustration";
 import { PageBanner } from "@/components/ui/PageBanner";
@@ -15,8 +15,7 @@ import {
   SERVIZI,
   type ServizioSlug,
 } from "@/lib/routes";
-import { metadataPagina, riassunto } from "@/lib/seo";
-import { servizio as servizioPerMotori } from "@/lib/structured-data";
+import { metadataPagina } from "@/lib/seo";
 
 /**
  * Le nove pagine servizio, generate da un unico modello.
@@ -76,12 +75,12 @@ export default async function PaginaServizio({
 
   return (
     <>
-      <JsonLd
-        dati={servizioPerMotori({
-          nome: contenuto.nomeEsteso,
-          descrizione: riassunto(descrizione.paragrafi[0] ?? "", 300),
-          percorso: routes.servizio(slug),
-        })}
+      <DatiStrutturati
+        percorso={routes.servizio(slug)}
+        titolo={RICERCA_SERVIZI[slug].titolo}
+        descrizione={RICERCA_SERVIZI[slug].descrizione}
+        immagine={`/img/og/${slug}.jpg`}
+        servizio={slug}
       />
 
       <PageBanner

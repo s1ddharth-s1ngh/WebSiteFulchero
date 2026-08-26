@@ -1,4 +1,5 @@
 import { CtaContatti } from "@/components/sections/CtaContatti";
+import { DatiStrutturati } from "@/components/seo/DatiStrutturati";
 import { BannerSlider } from "@/components/sliders/BannerSlider";
 import { Accordion } from "@/components/ui/Accordion";
 import { ArrowLink } from "@/components/ui/ArrowLink";
@@ -8,6 +9,7 @@ import { Illustration, IllustrationFrame } from "@/components/ui/Illustration";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { ServiceCard } from "@/components/ui/ServiceCard";
 import { HOME } from "@/data/home";
+import { RICERCA_HOME } from "@/data/seo";
 import { SERVIZI_CONTENUTO } from "@/data/services";
 import { routes } from "@/lib/routes";
 import { anniDiAttivita, site } from "@/lib/site";
@@ -20,6 +22,13 @@ export default function Home() {
 
   return (
     <>
+      <DatiStrutturati
+        percorso={routes.home}
+        titolo={RICERCA_HOME.titolo}
+        descrizione={RICERCA_HOME.descrizione}
+        immagine={HOME.banner.immagine.src}
+      />
+
       <BannerSlider />
 
       {/* Chi siamo */}
