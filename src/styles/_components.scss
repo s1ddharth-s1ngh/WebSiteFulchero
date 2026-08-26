@@ -2666,7 +2666,17 @@ filter
     background-color: $light;
     padding: 0 20px;
 
-    & a {
+    // Nel tema erano <a href="#">: link che non portano da nessuna parte e
+    // che il JavaScript annullava con return false. Sono comandi, non
+    // navigazione, quindi ora sono <button>. Il selettore li copre entrambi
+    // perche' le regole sono le stesse.
+    & a,
+    & button {
+      border: none;
+      background: none;
+      font-family: inherit;
+      cursor: pointer;
+      appearance: none;
       text-transform: uppercase;
       font-size: 14px;
       font-weight: 600;

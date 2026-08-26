@@ -74,6 +74,20 @@ const INTENZIONALI = [
       "refuso corretto, la classe non era usata da nessuna parte",
   },
   {
+    match: (selector) => selector.startsWith(".mil-filter .mil-filter-links "),
+    lato: "legacy",
+    motivo:
+      "i filtri del portfolio sono <button> invece di <a href=#>: le regole del " +
+      "tema ora coprono entrambi, piu il reset degli stili nativi del pulsante",
+  },
+  {
+    match: (selector) => selector.startsWith(".mil-filter .mil-filter-links "),
+    lato: "porting",
+    motivo:
+      "i filtri del portfolio sono <button> invece di <a href=#>: le regole del " +
+      "tema ora coprono entrambi, piu il reset degli stili nativi del pulsante",
+  },
+  {
     match: (selector) => selector === "footer .mil-bg-img",
     lato: "porting",
     motivo:
