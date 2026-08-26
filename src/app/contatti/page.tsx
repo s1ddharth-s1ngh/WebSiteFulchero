@@ -13,6 +13,7 @@ import { indirizzoCompleto, site } from "@/lib/site";
 export const metadata: Metadata = metadataPagina({
   ...RICERCA_PAGINE.contatti,
   percorso: routes.contatti,
+  anteprima: "contatti",
 });
 
 export default function Contatti() {

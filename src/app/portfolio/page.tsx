@@ -11,6 +11,7 @@ import { routes } from "@/lib/routes";
 export const metadata: Metadata = metadataPagina({
   ...RICERCA_PAGINE.portfolio,
   percorso: routes.portfolio,
+  anteprima: "portfolio",
 });
 
 export default function Portfolio() {

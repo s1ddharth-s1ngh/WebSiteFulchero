@@ -47,6 +47,7 @@ export async function generateMetadata({
   return metadataPagina({
     ...RICERCA_SERVIZI[contenuto.slug],
     percorso: routes.servizio(contenuto.slug),
+    anteprima: contenuto.slug,
   });
 }
 

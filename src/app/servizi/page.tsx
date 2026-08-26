@@ -14,6 +14,7 @@ import { routes, SERVIZI } from "@/lib/routes";
 export const metadata: Metadata = metadataPagina({
   ...RICERCA_PAGINE.servizi,
   percorso: routes.servizi,
+  anteprima: "servizi",
 });
 
 export default function Servizi() {

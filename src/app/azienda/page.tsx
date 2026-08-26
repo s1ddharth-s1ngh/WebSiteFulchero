@@ -17,6 +17,7 @@ import { site } from "@/lib/site";
 export const metadata: Metadata = metadataPagina({
   ...RICERCA_PAGINE.azienda,
   percorso: routes.azienda,
+  anteprima: "azienda",
 });
 
 export default function Azienda() {

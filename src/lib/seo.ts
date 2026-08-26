@@ -24,6 +24,12 @@ type Opzioni = {
   descrizione: string;
   /** Percorso della pagina, per il canonical. */
   percorso: string;
+  /**
+   * Nome del file in /img/og, senza estensione: e' l'immagine mostrata da chi
+   * condivide il link. Senza, la pagina eredita l'anteprima con il marchio
+   * dichiarata dal layout, uguale per tutto il sito.
+   */
+  anteprima: string;
 };
 
 /**
@@ -33,8 +39,15 @@ type Opzioni = {
  * pagine e un canonical fisso sulla home: per i motori di ricerca tredici
  * pagine dichiaravano di essere una copia della home.
  */
-export function metadataPagina({ titolo, descrizione, percorso }: Opzioni): Metadata {
+export function metadataPagina({ titolo, descrizione, percorso, anteprima }: Opzioni): Metadata {
   const testo = riassunto(descrizione);
+  const immagine = {
+    url: `/img/og/${anteprima}.jpg`,
+    width: 1200,
+    height: 630,
+    alt: `${titolo} | ${site.nome}`,
+  };
+
   return {
     title: titolo,
     description: testo,
@@ -44,10 +57,12 @@ export function metadataPagina({ titolo, descrizione, percorso }: Opzioni): Meta
       description: testo,
       url: percorso,
       type: "website",
+      images: [immagine],
     },
     twitter: {
       title: `${titolo} | ${site.nome}`,
       description: testo,
+      images: [immagine.url],
     },
   };
 }
