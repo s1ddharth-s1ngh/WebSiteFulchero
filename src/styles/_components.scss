@@ -92,7 +92,9 @@ banner
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: $dt-80;
+    // Il tema usa $dt-80: in produzione e' stato alleggerito per lasciar
+    // leggere le fotografie sotto il velo.
+    background-color: $dt-60;
 }
 
 .mil-banner {
@@ -531,7 +533,7 @@ icons
 
             &.mil-icon-border {
                 border: 5px solid $accent;
-                border-image: repeating-linear-gradient( -45deg, transparent, transparent 1px, $accent 1px, $accent 3px) 5;
+                border-image: repeating-linear-gradient( -45deg, transparent, transparent 1px, $accent-soft 1px, $accent-soft 3px) 5;
             }
         }
     }
@@ -565,7 +567,7 @@ icons
         &:before {
             background-color: transparent;
             border: 3px solid $accent;
-            border-image: repeating-linear-gradient( -45deg, transparent, transparent 1px, $accent 1px, $accent 3px) 3;
+            border-image: repeating-linear-gradient( -45deg, transparent, transparent 1px, $accent-soft 1px, $accent-soft 3px) 3;
         }
 
         & .mil-icon {
@@ -588,7 +590,7 @@ icons
 
     &:hover {
         border-top: solid 5px $accent;
-        border-image: repeating-linear-gradient(-45deg, transparent, transparent 1px, $accent 1px, $accent 3px) 5;
+        border-image: repeating-linear-gradient(-45deg, transparent, transparent 1px, $accent-soft 1px, $accent-soft 3px) 5;
 
         & .mil-icon {
             border-color: $accent;
@@ -597,7 +599,7 @@ icons
         & .mil-divider-sm {
             background-color: transparent;
             border-top: solid 5px $accent;
-            border-image: repeating-linear-gradient(-45deg, transparent, transparent 1px, $accent 1px, $accent 3px) 5;
+            border-image: repeating-linear-gradient(-45deg, transparent, transparent 1px, $accent-soft 1px, $accent-soft 3px) 5;
         }
     }
 }
@@ -648,7 +650,7 @@ services
         padding-top: 80px;
         padding-bottom: 40px;
         border: 5px solid $accent;
-        border-image: repeating-linear-gradient( -45deg, transparent, transparent 1px, $accent 1px, $accent 3px) 5;
+        border-image: repeating-linear-gradient( -45deg, transparent, transparent 1px, $accent-soft 1px, $accent-soft 3px) 5;
 
         & .mil-service-text {
             opacity: 0;
@@ -776,7 +778,10 @@ portfolio
 
     & .mil-project-descr {
         padding: 90px 60px 60px 100px;
-        background-color: $accent;
+        // Il tema usa il fondo pieno: in produzione e' stato reso semitrasparente
+        // con sfocatura, cosi' la fotografia del progetto resta leggibile sotto.
+        background-color: rgba($accent, .6);
+        backdrop-filter: blur(5px);
         width: 100%;
         position: absolute;
         bottom: 0;
@@ -971,7 +976,7 @@ blog
             &:after {
                 background-color: transparent;
                 border-top: 3px solid $accent;
-                border-image: repeating-linear-gradient(-45deg, transparent, transparent 1px, $accent 1px, $accent 3px) 3;
+                border-image: repeating-linear-gradient(-45deg, transparent, transparent 1px, $accent-soft 1px, $accent-soft 3px) 3;
             }
         }
 
@@ -981,7 +986,7 @@ blog
                 & .mil-arrow {
                     background-color: transparent;
                     border: 3px solid $accent;
-                    border-image: repeating-linear-gradient(-45deg, transparent, transparent 1px, $accent 1px, $accent 3px) 3;
+                    border-image: repeating-linear-gradient(-45deg, transparent, transparent 1px, $accent-soft 1px, $accent-soft 3px) 3;
                 }
             }
         }
@@ -1199,7 +1204,7 @@ footer {
                 transition: $t-sm;
 
                 &:hover {
-                    color: $accent !important;
+                    color: $accent-soft !important;
                 }
             }
         }
@@ -1245,7 +1250,7 @@ top panel
     }
 
     &.mil-active {
-        background-color: $dt-90;
+        background-color: $top-panel-bg;
         backdrop-filter: blur(8px);
 
     }
@@ -1368,7 +1373,7 @@ top panel
         }
     }
 
-    @media screen and (max-width: 1200px) {
+    @media screen and (max-width: $mobile-nav-breakpoint) {
         position: absolute;
         top: 100%;
         left: 0;
@@ -1486,7 +1491,7 @@ top panel
     }
 }
 
-@media screen and (max-width: 1200px) {
+@media screen and (max-width: $mobile-nav-breakpoint) {
     .mil-top-panel-buttons .mil-button {
         display: none;
     }
@@ -1506,7 +1511,7 @@ menu button
     align-items: center;
     transition: $t-md;
 
-    @media screen and (max-width: 1200px) {
+    @media screen and (max-width: $mobile-nav-breakpoint) {
         display: flex;
     }
 
@@ -1685,7 +1690,7 @@ process
         &:before {
             background-color: transparent;
             border: 3px solid $accent;
-            border-image: repeating-linear-gradient(-45deg, transparent, transparent 1px, $accent 1px, $accent 3px) 3;
+            border-image: repeating-linear-gradient(-45deg, transparent, transparent 1px, $accent-soft 1px, $accent-soft 3px) 3;
         }
 
         & .mil-icon {

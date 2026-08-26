@@ -65,6 +65,10 @@ $h6: 15px;
 
 $text: 15px;
 
+// Soglia oltre la quale la navigazione diventa il menu a tendina con
+// l'hamburger. Il tema usa 1200px, la produzione 1000px.
+$mobile-nav-breakpoint: 1000px;
+
 $t-sm: .2s cubic-bezier(0, 0, 0.3642, 1);
 $t-md: .4s cubic-bezier(0, 0, 0.3642, 1);
 $t-lg: .6s cubic-bezier(0, 0, 0.3642, 1);
