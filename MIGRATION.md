@@ -60,3 +60,25 @@ nessuna 404 e il primo hover trova l'immagine gia in cache.
 
 Il tema carica in ogni pagina 9 script e 5 fogli di stile; di questi, 4 script e
 2 fogli di stile non vengono mai usati dal markup.
+
+### Bilancio del peso
+
+Il layout Razor caricava in ogni pagina 9 script e 5 fogli di stile, per un
+totale di 476 KB di JavaScript e 212 KB di CSS non minificato, indipendentemente
+da cosa la pagina usasse davvero.
+
+| Voce                            | ASP.NET | Next.js                                   |
+| ------------------------------- | ------- | ----------------------------------------- |
+| JS caricato in ogni pagina       | 476 KB  | bundle per route, code splitting di Next  |
+| di cui mai usato dal markup      | 87 KB   | 0                                         |
+| CSS caricato in ogni pagina      | 212 KB  | un solo foglio, compilato dallo SCSS      |
+| di cui mai usato dal markup      | 61 KB   | 0                                         |
+| Asset statici totali             | 23,5 MB | 18,8 MB                                   |
+
+I 4,7 MB in meno sugli asset statici vengono da `fonts/webfonts` (2,6 MB di
+Font Awesome mai usato), `mailer/` (249 KB di PHPMailer), `covers/` (228 KB di
+foto demo) e dalla ricompressione del logo (1,2 MB -> 270 KB).
+
+Le immagini restanti non sono state ricompresse a mano: passano da
+`next/image`, che le serve in AVIF o WebP alla risoluzione richiesta dal
+viewport.
