@@ -6,6 +6,7 @@ import { Illustration, IllustrationFrame } from "@/components/ui/Illustration";
 import { PageBanner } from "@/components/ui/PageBanner";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { ServiceCardStatica } from "@/components/ui/ServiceCard";
+import { RICERCA_SERVIZI } from "@/data/seo";
 import { SERVIZI_CONTENUTO } from "@/data/services";
 import {
   routes,
@@ -44,11 +45,7 @@ export async function generateMetadata({
   if (!contenuto) return {};
 
   return metadataPagina({
-    titolo: contenuto.titoloPagina,
-    // Il primo paragrafo della presentazione e' gia' scritto per spiegare il
-    // servizio a chi arriva sulla pagina: e' la descrizione migliore che
-    // esista, ed e' allineata al contenuto per costruzione.
-    descrizione: contenuto.descrizione.paragrafi[0] ?? "",
+    ...RICERCA_SERVIZI[contenuto.slug],
     percorso: routes.servizio(contenuto.slug),
   });
 }

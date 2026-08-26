@@ -6,12 +6,12 @@ import { PageBanner } from "@/components/ui/PageBanner";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Testo } from "@/components/ui/Testo";
 import { PAGINA_CONTATTI } from "@/data/pages";
+import { RICERCA_PAGINE } from "@/data/seo";
 import { routes } from "@/lib/routes";
 import { indirizzoCompleto, site } from "@/lib/site";
 
 export const metadata: Metadata = metadataPagina({
-  titolo: "Contatti",
-  descrizione: PAGINA_CONTATTI.introduzione.testo,
+  ...RICERCA_PAGINE.contatti,
   percorso: routes.contatti,
 });
 

@@ -10,12 +10,12 @@ import { PageBanner } from "@/components/ui/PageBanner";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Testo } from "@/components/ui/Testo";
 import { AZIENDA } from "@/data/company";
+import { RICERCA_PAGINE } from "@/data/seo";
 import { routes } from "@/lib/routes";
 import { site } from "@/lib/site";
 
 export const metadata: Metadata = metadataPagina({
-  titolo: "Azienda",
-  descrizione: AZIENDA.chiSiamo.paragrafi[0],
+  ...RICERCA_PAGINE.azienda,
   percorso: routes.azienda,
 });
 

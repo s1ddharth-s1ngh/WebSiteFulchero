@@ -7,13 +7,12 @@ import { PageBanner } from "@/components/ui/PageBanner";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { ServiceCard } from "@/components/ui/ServiceCard";
 import { PAGINA_SERVIZI } from "@/data/pages";
+import { RICERCA_PAGINE } from "@/data/seo";
 import { SERVIZI_CONTENUTO } from "@/data/services";
 import { routes, SERVIZI } from "@/lib/routes";
 
 export const metadata: Metadata = metadataPagina({
-  titolo: "Servizi",
-  descrizione:
-    "Progettazione architettonica e strutturale, sicurezza nei cantieri, antincendio, impianti elettrici, linee vita, risparmio energetico e lavori pubblici a Verzuolo e Saluzzo.",
+  ...RICERCA_PAGINE.servizi,
   percorso: routes.servizi,
 });
 

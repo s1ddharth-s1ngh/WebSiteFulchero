@@ -5,6 +5,7 @@ import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { ScrollProgress } from "@/components/layout/ScrollProgress";
+import { RICERCA_HOME } from "@/data/seo";
 import { fontVariables } from "@/lib/fonts";
 import { site } from "@/lib/site";
 import { attivita } from "@/lib/structured-data";
@@ -16,7 +17,7 @@ import "@/styles/style.scss";
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   title: {
-    default: `${site.nome} - ${site.claim}`,
+    default: RICERCA_HOME.titolo,
     // Il layout Razor appendeva a ogni titolo l'intera stringa
     // "Studio Fulchero - Ingegneria Civile, Architettura e Geometra a Verzuolo
     // e Saluzzo": 70 caratteri di coda uguale su tutte le pagine, che nei
@@ -24,7 +25,7 @@ export const metadata: Metadata = {
     // stanno nei titoli e nelle descrizioni delle singole pagine.
     template: `%s | ${site.nome}`,
   },
-  description: site.descrizione,
+  description: RICERCA_HOME.descrizione,
   applicationName: site.nome,
   authors: [{ name: site.autore.nome, url: site.autore.url }],
   // Il layout originale dichiarava due meta keywords in conflitto tra loro.
@@ -44,14 +45,14 @@ export const metadata: Metadata = {
     type: "website",
     locale: "it_IT",
     siteName: site.nome,
-    title: `${site.nome} - ${site.claim}`,
-    description: `${site.payoff} ${site.nome} offre soluzioni in ingegneria e architettura a Verzuolo e Saluzzo.`,
+    title: RICERCA_HOME.titolo,
+    description: RICERCA_HOME.descrizione,
     url: site.url,
   },
   twitter: {
     card: "summary_large_image",
-    title: `${site.nome} - ${site.claim}`,
-    description: `${site.payoff} ${site.nome} offre soluzioni in ingegneria e architettura a Verzuolo e Saluzzo.`,
+    title: RICERCA_HOME.titolo,
+    description: RICERCA_HOME.descrizione,
   },
   alternates: { canonical: "/" },
   robots: { index: true, follow: true },

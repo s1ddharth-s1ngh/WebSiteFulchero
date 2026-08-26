@@ -4,12 +4,12 @@ import { PortfolioGrid } from "@/components/portfolio/PortfolioGrid";
 import { PageBanner } from "@/components/ui/PageBanner";
 import { Testo } from "@/components/ui/Testo";
 import { PAGINA_PORTFOLIO } from "@/data/pages";
+import { RICERCA_PAGINE } from "@/data/seo";
 import { FILTRI_PORTFOLIO, VOCI_PORTFOLIO } from "@/data/portfolio";
 import { routes } from "@/lib/routes";
 
 export const metadata: Metadata = metadataPagina({
-  titolo: "Portfolio",
-  descrizione: PAGINA_PORTFOLIO.introduzione.testo,
+  ...RICERCA_PAGINE.portfolio,
   percorso: routes.portfolio,
 });
 
