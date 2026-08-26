@@ -1,12 +1,17 @@
 {
   "name": "website-fulchero",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "typecheck": "tsc --noEmit",
+    "format": "prettier --write \"**/*.{ts,tsx,mjs,scss,css,json,md}\"",
+    "format:check": "prettier --check \"**/*.{ts,tsx,mjs,scss,css,json,md}\"",
+    "check": "npm run lint && npm run typecheck && npm run format:check"
   },
   "dependencies": {
     "gsap": "^3.12.7",
@@ -18,7 +23,6 @@
     "swiper": "^14.1.0"
   },
   "devDependencies": {
-    "@eslint/eslintrc": "^3",
     "@types/imagesloaded": "^4.1.6",
     "@types/node": "^26.3.0",
     "@types/react": "^19.2.18",
@@ -28,5 +32,9 @@
     "prettier": "^3.4.2",
     "sass": "^1.83.4",
     "typescript": "^5"
+  },
+  "description": "Sito istituzionale Studio Fulchero - ingegneria civile, architettura e geometra a Verzuolo e Saluzzo",
+  "engines": {
+    "node": ">=20.9.0"
   }
 }
