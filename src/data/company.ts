@@ -88,27 +88,4 @@ export const AZIENDA = {
       { etichetta: "collaborazioni", valore: 40, conPiu: true },
     ] satisfies readonly NumeroStudio[],
   },
-
-  comeLavoriamo: {
-    suptitolo: "soluzioni che contano",
-    titolo: [
-      { testo: "Esperienza e innovazione\n", evidenziato: false },
-      { testo: "al tuo servizio", evidenziato: true },
-    ] satisfies TitoloRicco,
-    voci: [
-      {
-        titolo: "Servizi integrati e personalizzati",
-        testo:
-          "Un unico team per tutte le tue\nesigenze tecniche, dalla progettazione\nalla realizzazione",
-      },
-      {
-        titolo: "Esperienza e\ninnovazione",
-        testo: "Oltre 40 anni di esperienza combinati\ncon la visione delle nuove generazioni",
-      },
-      {
-        titolo: "Soluzioni\nsostenibili e affidabili",
-        testo: "Progetti pensati per durare nel tempo,\nrispettando l'ambiente e le normative",
-      },
-    ] satisfies readonly ValoreStudio[],
-  },
 } as const;

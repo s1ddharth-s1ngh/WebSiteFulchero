@@ -13,8 +13,9 @@ import { readdirSync, readFileSync, existsSync } from "node:fs";
 import { join } from "node:path";
 import { AZIENDA } from "@/data/company";
 import { HOME } from "@/data/home";
+import { PAGINA_CONTATTI, PAGINA_PORTFOLIO, PAGINA_SERVIZI } from "@/data/pages";
 import { VOCI_PORTFOLIO, FILTRI_PORTFOLIO } from "@/data/portfolio";
-import { CTA_CONTATTI } from "@/data/sections";
+import { COME_LAVORIAMO, CTA_CONTATTI } from "@/data/sections";
 import { SERVIZI_CONTENUTO } from "@/data/services";
 
 const VIEWS_DIR =
@@ -122,7 +123,8 @@ const fonti: Record<string, unknown> = {
   home: HOME,
   azienda: AZIENDA,
   portfolio: { filtri: FILTRI_PORTFOLIO, voci: VOCI_PORTFOLIO },
-  sezioni: { ctaContatti: CTA_CONTATTI },
+  sezioni: { ctaContatti: CTA_CONTATTI, comeLavoriamo: COME_LAVORIAMO },
+  pagine: { servizi: PAGINA_SERVIZI, portfolio: PAGINA_PORTFOLIO, contatti: PAGINA_CONTATTI },
   servizi: SERVIZI_CONTENUTO,
 };
 

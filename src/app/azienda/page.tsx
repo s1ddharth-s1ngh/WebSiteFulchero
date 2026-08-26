@@ -1,3 +1,4 @@
+import { ComeLavoriamo } from "@/components/sections/ComeLavoriamo";
 import { CtaContatti } from "@/components/sections/CtaContatti";
 import { BgImage } from "@/components/ui/BgImage";
 import { Counter } from "@/components/ui/Counter";
@@ -11,7 +12,7 @@ import { routes } from "@/lib/routes";
 import { site } from "@/lib/site";
 
 export default function Azienda() {
-  const { banner, chiSiamo, valori, numeri, comeLavoriamo } = AZIENDA;
+  const { banner, chiSiamo, valori, numeri } = AZIENDA;
 
   return (
     <>
@@ -125,36 +126,7 @@ export default function Azienda() {
         </div>
       </section>
 
-      {/* Come lavoriamo */}
-      <section>
-        <div className="container mil-p-90-60">
-          <div className="mil-background-grid mil-softened" />
-          <div className="row">
-            <div className="col-12">
-              <div className="mil-center mil-mb-90">
-                <SectionHeading
-                  suptitolo={comeLavoriamo.suptitolo}
-                  titolo={comeLavoriamo.titolo}
-                  margineTitolo="mil-mb-30"
-                />
-              </div>
-            </div>
-
-            {comeLavoriamo.voci.map((voce) => (
-              <div key={voce.titolo} className="col-lg-4">
-                <div className="mil-center mil-up mil-mb-60">
-                  <h4 className="mil-upper mil-mb-20">
-                    <Testo valore={voce.titolo} />
-                  </h4>
-                  <p>
-                    <Testo valore={voce.testo} />
-                  </p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      <ComeLavoriamo />
 
       <CtaContatti />
     </>
